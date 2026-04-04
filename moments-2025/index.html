@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JW 的朋友圈年度回顾 | 2025.4 - 2026.4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #faf8f5;
+    --card-bg: #ffffff;
+    --text: #2c2c2c;
+    --text-light: #6b6b6b;
+    --accent: #e07a5f;
+    --accent2: #3d405b;
+    --accent3: #81b29a;
+    --accent4: #f2cc8f;
+    --border: #e8e4df;
+    --shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #3d405b 0%, #e07a5f 50%, #f2cc8f 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.2);
+  }
+  .hero .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: rgba(255,255,255,0.85);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .hero .date-range {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 30px;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 3rem 1.5rem;
+    background: var(--accent2);
+  }
+  .stat-item {
+    text-align: center;
+    color: #fff;
+    min-width: 100px;
+  }
+  .stat-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    letter-spacing: 0.05em;
+  }
+
+  /* Section */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--accent2);
+  }
+  .section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent3), var(--accent4), var(--accent));
+  }
+
+  .month-group {
+    margin-bottom: 3rem;
+  }
+  .month-label {
+    position: relative;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    margin-left: -3rem;
+    padding-left: 3rem;
+  }
+  .month-label::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+  }
+
+  .moment-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .moment-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+  }
+  .moment-card::before {
+    content: '';
+    position: absolute;
+    left: -2.15rem;
+    top: 1.5rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent3);
+    border: 2px solid var(--bg);
+  }
+
+  .card-date {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+  }
+  .card-location {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .card-location::before { content: '📍 '; }
+  .card-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+  .tag-travel { background: #e8f5e9; color: #2e7d32; }
+  .tag-music { background: #fce4ec; color: #c62828; }
+  .tag-food { background: #fff3e0; color: #e65100; }
+  .tag-life { background: #e3f2fd; color: #1565c0; }
+  .tag-photo { background: #f3e5f5; color: #6a1b9a; }
+  .tag-tech { background: #e0f2f1; color: #00695c; }
+  .tag-work { background: #fafafa; color: #616161; }
+
+  .card-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Image Grid in Cards */
+  .card-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 6px;
+    margin-bottom: 0.8rem;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .img-placeholder {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  /* Theme Sections */
+  .themes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .theme-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+  }
+  .theme-card:hover { transform: translateY(-3px); }
+  .theme-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .theme-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--accent2);
+  }
+  .theme-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .theme-count {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--bg);
+    color: var(--accent);
+  }
+
+  /* Month Heatmap */
+  .heatmap {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 8px;
+    max-width: 700px;
+    margin: 2rem auto;
+  }
+  .heat-cell {
+    aspect-ratio: 1;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #fff;
+    font-weight: 500;
+    transition: transform 0.2s;
+  }
+  .heat-cell:hover { transform: scale(1.1); }
+  .heat-num { font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
+  .heat-0 { background: #e8e4df; color: var(--text-light); }
+  .heat-1 { background: #c5dedd; color: #2c5f5c; }
+  .heat-2 { background: #9cc5c0; color: #1a4542; }
+  .heat-3 { background: #6daa9e; color: #fff; }
+  .heat-4 { background: #4a9085; color: #fff; }
+  .heat-5 { background: #e07a5f; color: #fff; }
+
+  /* Quote */
+  .quote-block {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, var(--accent2), #5a5f8a);
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+  }
+  .quote-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+  .quote-author {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--accent2);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+  }
+  .footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .timeline { padding-left: 2rem; }
+    .month-label { margin-left: -2rem; padding-left: 2rem; }
+    .moment-card::before { left: -1.4rem; }
+    .heatmap { grid-template-columns: repeat(6, 1fr); }
+    .stats-bar { gap: 1rem; }
+    .stat-num { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>JW 的朋友圈年度回顾</h1>
+    <p class="subtitle">杭州 · 浙江 &nbsp;|&nbsp; 生活、旅行、音乐与咖啡</p>
+    <span class="date-range">2025 年 4 月 — 2026 年 4 月</span>
+  </div>
+  <div class="scroll-hint">↓ 向下滑动</div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">30+</div>
+    <div class="stat-label">条朋友圈</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-label">个国家/城市</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">12</div>
+    <div class="stat-label">个月份</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6</div>
+    <div class="stat-label">大主题</div>
+  </div>
+</div>
+
+<!-- Themes Overview -->
+<div class="section">
+  <h2 class="section-title">年度关键词</h2>
+  <p class="section-subtitle">这一年的生活，被这些主题串联起来</p>
+  <div class="themes">
+    <div class="theme-card">
+      <div class="theme-icon">🎵</div>
+      <div class="theme-name">音乐</div>
+      <div class="theme-desc">从 CD 到黑胶，从 Home KTV 到吉他录制，音乐始终是你生活的底色</div>
+      <div class="theme-count">8+ 条动态</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">✈️</div>
+      <div class="theme-name">旅行</div>
+      <div class="theme-desc">日本关西、马来西亚槟城与吉隆坡、上海……脚步从未停歇</div>
+      <div class="theme-count">6+ 条动态</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">📷</div>
+      <div class="theme-name">摄影</div>
+      <div class="theme-desc">两年的黑白卷终于拍完，CCD 相机的怀旧，上下班路上的随机拍摄</div>
+      <div class="theme-count">4+ 条动态</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">☕</div>
+      <div class="theme-name">咖啡与生活</div>
+      <div class="theme-desc">手冲器具、双11 新玩具、城市漫步中的那杯咖啡</div>
+      <div class="theme-count">5+ 条动态</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">🥾</div>
+      <div class="theme-name">户外</div>
+      <div class="theme-desc">马岭古道徒步、西溪湿地骑行、小红车环西湖</div>
+      <div class="theme-count">3+ 条动态</div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-icon">🔧</div>
+      <div class="theme-name">极客 & 创造</div>
+      <div class="theme-desc">OpenClaw 开源项目、Raspberry Pi、吉他效果器 DIY</div>
+      <div class="theme-count">3+ 条动态</div>
+    </div>
+  </div>
+</div>
+
+<!-- Monthly Activity -->
+<div class="section" style="background: #f5f3f0; margin: 0 auto; max-width: 100%; padding: 4rem 1.5rem;">
+  <h2 class="section-title">月度活跃度</h2>
+  <p class="section-subtitle">每月发布的朋友圈数量</p>
+  <div class="heatmap">
+    <div class="heat-cell heat-0"><span class="heat-num">—</span><span>25.4</span></div>
+    <div class="heat-cell heat-5"><span class="heat-num">7</span><span>25.5</span></div>
+    <div class="heat-cell heat-5"><span class="heat-num">9</span><span>25.6</span></div>
+    <div class="heat-cell heat-2"><span class="heat-num">2</span><span>25.7</span></div>
+    <div class="heat-cell heat-0"><span class="heat-num">—</span><span>25.8</span></div>
+    <div class="heat-cell heat-0"><span class="heat-num">—</span><span>25.9</span></div>
+    <div class="heat-cell heat-4"><span class="heat-num">5</span><span>25.10</span></div>
+    <div class="heat-cell heat-0"><span class="heat-num">—</span><span>25.11</span></div>
+    <div class="heat-cell heat-4"><span class="heat-num">6</span><span>25.12</span></div>
+    <div class="heat-cell heat-0"><span class="heat-num">—</span><span>26.1</span></div>
+    <div class="heat-cell heat-0"><span class="heat-num">—</span><span>26.2</span></div>
+    <div class="heat-cell heat-4"><span class="heat-num">6</span><span>26.3</span></div>
+  </div>
+  <p style="text-align:center; color: var(--text-light); font-size: 0.8rem; margin-top: 1rem;">* "—" 表示该月无可见动态或未浏览到</p>
+</div>
+
+<!-- Timeline -->
+<div class="section">
+  <h2 class="section-title">时光轴</h2>
+  <p class="section-subtitle">逐月回顾这一年的精彩瞬间</p>
+
+  <div class="timeline">
+
+    <!-- 2025年5月 -->
+    <div class="month-group">
+      <div class="month-label">2025 年 5 月 · 日本之旅</div>
+
+      <div class="moment-card">
+        <div class="card-emoji">🏯</div>
+        <div class="card-date">4月30日 — 5月5日</div>
+        <div class="card-location">日本 · 京都 / 白浜 / 和歌山</div>
+        <div class="card-text">一场穿越关西的旅行：京都的古寺、白浜的温泉海岸、和歌山的自然风光。用镜头记录了沿途的一切美好。</div>
+        <div class="card-images">
+          <div class="img-placeholder" style="background: #e8d5c4;">🏯</div>
+          <div class="img-placeholder" style="background: #b3d9e8;">🌊</div>
+          <div class="img-placeholder" style="background: #c8e6c9;">🌿</div>
+          <div class="img-placeholder" style="background: #f5e0c3;">⛩️</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-travel">旅行</span>
+          <span class="tag tag-photo">摄影</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">5月12日</div>
+        <div class="card-text">「历时2年的黑白卷，今天终于拍完，准备开盲盒，先来首小曲儿庆祝下。」——两年的坚持，一卷胶片的完结，满满的仪式感。</div>
+        <div class="card-tags">
+          <span class="tag tag-photo">胶片摄影</span>
+          <span class="tag tag-music">音乐</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">5月24日</div>
+        <div class="card-text">「四姨养的🦐，和专门给我做的家乡美食拉条子。」——家的味道，永远是最治愈的。</div>
+        <div class="card-tags">
+          <span class="tag tag-food">美食</span>
+          <span class="tag tag-life">家人</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">5月31日</div>
+        <div class="card-location">杭州市 · 马岭古道</div>
+        <div class="card-text">「徒步马岭古道」——在杭州的山间古道上，用脚步丈量自然。</div>
+        <div class="card-tags">
+          <span class="tag tag-travel">户外</span>
+          <span class="tag tag-photo">摄影</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2025年6月 -->
+    <div class="month-group">
+      <div class="month-label">2025 年 6 月 · 马来西亚与音乐</div>
+
+      <div class="moment-card">
+        <div class="card-date">6月1日</div>
+        <div class="card-text">「非常适合这种潮湿的下雨天的晚上，听的一张CD」——灯光昏黄，雨声淅沥，一张唱片的时间刚刚好。</div>
+        <div class="card-tags">
+          <span class="tag tag-music">音乐</span>
+          <span class="tag tag-life">生活美学</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-emoji">✈️</div>
+        <div class="card-date">6月8日 — 6月11日</div>
+        <div class="card-location">马来西亚 · 吉隆坡 / 槟城 George Town</div>
+        <div class="card-text">「Outing」Penang - 槟城。双子塔下的街景、槟城老城的人文气息——「音乐是共通的语言，通过音乐可以更加立体的了解一个地方的历史和文化。」</div>
+        <div class="card-images">
+          <div class="img-placeholder" style="background: #c8e6c9;">🏙️</div>
+          <div class="img-placeholder" style="background: #fff3e0;">🍜</div>
+          <div class="img-placeholder" style="background: #e3f2fd;">🎵</div>
+          <div class="img-placeholder" style="background: #f3e5f5;">🏛️</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag tag-travel">旅行</span>
+          <span class="tag tag-music">音乐</span>
+          <span class="tag tag-food">美食</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">6月17日</div>
+        <div class="card-text">「收到来自 Black Note 的朋友寄来的生日礼物，Yes. Everything is Everything. 🎉」——黑胶唱片，生日的最好礼物。</div>
+        <div class="card-tags">
+          <span class="tag tag-music">黑胶</span>
+          <span class="tag tag-life">生日</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">6月22日</div>
+        <div class="card-location">杭州</div>
+        <div class="card-text">「躺在沙发上，喝了一下午，一首「Let it rain」献给……」+ 「Home KTV」Dancing with my phone. ——慵懒的午后，音乐和微醺。</div>
+        <div class="card-tags">
+          <span class="tag tag-music">Home KTV</span>
+          <span class="tag tag-life">生活</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">6月26日</div>
+        <div class="card-location">杭州市 · 蚂蚁集团 A 空间</div>
+        <div class="card-text">「人生不如意之一：cold lady and warm beer」——在公司园区的一个小幽默。</div>
+        <div class="card-tags">
+          <span class="tag tag-work">工作日常</span>
+          <span class="tag tag-life">段子</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">6月30日</div>
+        <div class="card-text">「S1已过去，S2文件夹已创建，加油👏」——上半年结束，下半年冲刺！</div>
+        <div class="card-tags">
+          <span class="tag tag-work">工作</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2025年7月 -->
+    <div class="month-group">
+      <div class="month-label">2025 年 7 月 · 怀旧与日常</div>
+
+      <div class="moment-card">
+        <div class="card-date">7月6日</div>
+        <div class="card-text">「这个我大学时候买的，佳能卡片相机，听说最近疯狂涨价，在CCD疯狂涨价的前几年，我还后悔为啥我当时买的是个CMOS的不值钱的玩意……」——谁能想到，当年的"便宜货"如今成了宝贝。</div>
+        <div class="card-tags">
+          <span class="tag tag-photo">相机</span>
+          <span class="tag tag-life">怀旧</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">7月8日</div>
+        <div class="card-text">「上下班路上的随机拍摄。」——用手机捕捉通勤路上的光影，日常也是风景。</div>
+        <div class="card-tags">
+          <span class="tag tag-photo">街拍</span>
+          <span class="tag tag-life">通勤</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2025年10月 -->
+    <div class="month-group">
+      <div class="month-label">2025 年 10 月 · 秋日节庆</div>
+
+      <div class="moment-card">
+        <div class="card-date">10月6日</div>
+        <div class="card-location">上海</div>
+        <div class="card-text">「中秋快乐🥮」——在上海度过的中秋佳节。</div>
+        <div class="card-tags">
+          <span class="tag tag-travel">上海</span>
+          <span class="tag tag-life">节日</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">10月8日</div>
+        <div class="card-text">「国庆假期圆满结束」——夕阳余晖下的假期尾声，美好的记忆。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">假期</span>
+          <span class="tag tag-photo">风景</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">10月12日</div>
+        <div class="card-location">杭州市 · 西溪国家湿地公园</div>
+        <div class="card-text">秋天的西溪湿地，芦苇摇曳，光影斑驳。</div>
+        <div class="card-tags">
+          <span class="tag tag-travel">户外</span>
+          <span class="tag tag-photo">秋景</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">10月25日</div>
+        <div class="card-text">「双11买的新玩具 🎮」——提前入手的手冲咖啡装备，生活品质 +1。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">咖啡</span>
+          <span class="tag tag-tech">新玩具</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2025年12月 -->
+    <div class="month-group">
+      <div class="month-label">2025 年 12 月 · 年末时光</div>
+
+      <div class="moment-card">
+        <div class="card-date">12月19日</div>
+        <div class="card-text">「End of 2025」——用一组照片为2025画上句号。日历、茶杯、老物件……年末的仪式感。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">年末</span>
+          <span class="tag tag-photo">摄影</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">12月24日</div>
+        <div class="card-location">杭州</div>
+        <div class="card-text">平安夜。暖色灯光、圣诞装饰、和朋友的聚会——杭州的冬夜也可以很温暖。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">节日</span>
+          <span class="tag tag-life">社交</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">12月27日</div>
+        <div class="card-location">杭州空军疗养医院体检中心</div>
+        <div class="card-text">「早起体检 & 小红车骑行西湖 🚲」+「工作近十年来，第一次体验公费体检」——体检完顺便环西湖骑行，阳光正好。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">健康</span>
+          <span class="tag tag-travel">骑行</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">12月底</div>
+        <div class="card-text">「年轻了！」——在西湖风景区的年终感悟。新的一年，依然年轻。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">感悟</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026年3月 -->
+    <div class="month-group">
+      <div class="month-label">2026 年 3 月 · 春天回归</div>
+
+      <div class="moment-card">
+        <div class="card-date">3月13日</div>
+        <div class="card-text">🎸 吉他时光——弹琴是最好的放松方式。</div>
+        <div class="card-tags">
+          <span class="tag tag-music">吉他</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">3月15日</div>
+        <div class="card-text">OpenClaw 开源项目 + Raspberry Pi——极客精神，用代码和硬件创造新可能。</div>
+        <div class="card-tags">
+          <span class="tag tag-tech">开源</span>
+          <span class="tag tag-tech">树莓派</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">3月18日</div>
+        <div class="card-text">🌧️ 雨天与伞——杭州的春雨，总是来得温柔。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">日常</span>
+          <span class="tag tag-photo">摄影</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">3月20日</div>
+        <div class="card-text">☕ 一杯咖啡的时间——春日午后的小确幸。</div>
+        <div class="card-tags">
+          <span class="tag tag-life">咖啡</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">3月21日</div>
+        <div class="card-text">🚶 City Walk——在城市中漫步，发现那些容易被忽略的风景。</div>
+        <div class="card-tags">
+          <span class="tag tag-travel">City Walk</span>
+          <span class="tag tag-photo">街拍</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">3月29日</div>
+        <div class="card-text">🎙️ 录制中——音乐创作的过程，每一个音符都值得反复推敲。</div>
+        <div class="card-tags">
+          <span class="tag tag-music">录音</span>
+          <span class="tag tag-tech">创作</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026年4月 -->
+    <div class="month-group">
+      <div class="month-label">2026 年 4 月 · 又是新的开始</div>
+
+      <div class="moment-card">
+        <div class="card-date">4月2日</div>
+        <div class="card-text">🎵 音乐永不停歇——新的一个月，从音乐开始。</div>
+        <div class="card-tags">
+          <span class="tag tag-music">音乐</span>
+        </div>
+      </div>
+
+      <div class="moment-card">
+        <div class="card-date">4月4日 · 今天</div>
+        <div class="card-text">🍦 冰淇淋——春天的甜蜜。今天的你，正在回顾这一整年。</div>
+        <div class="card-tags">
+          <span class="tag tag-food">美食</span>
+          <span class="tag tag-life">当下</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end timeline -->
+</div>
+
+<!-- Summary Quote -->
+<div class="section">
+  <div class="quote-block">
+    <div class="quote-text">
+      这一年，你用音乐填满了雨天，<br>
+      用脚步丈量了远方，<br>
+      用镜头定格了日常，<br>
+      用代码创造了新世界。<br><br>
+      <strong>Yes. Everything is Everything. 🎉</strong>
+    </div>
+    <div class="quote-author">—— JW 的 2025-2026 年度总结</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>JW 朋友圈年度回顾 · 2025.4 - 2026.4</p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem;">Generated with Claude · April 4, 2026</p>
+</div>
+
+</body>
+</html>
