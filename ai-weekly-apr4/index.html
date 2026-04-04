@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 热点周报 | 2026年4月2日–4日</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --card-bg: #14141f;
+    --card-border: #1e1e30;
+    --text: #e4e4ed;
+    --text-dim: #8888a0;
+    --accent-blue: #4f8fff;
+    --accent-purple: #a855f7;
+    --accent-green: #22d3ee;
+    --accent-orange: #f97316;
+    --accent-pink: #ec4899;
+    --accent-red: #ef4444;
+    --gradient-1: linear-gradient(135deg, #4f8fff, #a855f7);
+    --gradient-2: linear-gradient(135deg, #22d3ee, #4f8fff);
+    --gradient-3: linear-gradient(135deg, #f97316, #ec4899);
+    --gradient-4: linear-gradient(135deg, #22d3ee, #22c55e);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Animated gradient background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(79,143,255,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(34,211,238,0.04) 0%, transparent 50%);
+    animation: bgShift 20s ease-in-out infinite;
+    z-index: -1;
+  }
+  @keyframes bgShift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-2%, 1%); }
+    66% { transform: translate(1%, -2%); }
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero Header */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(79,143,255,0.1);
+    border: 1px solid rgba(79,143,255,0.2);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 13px;
+    color: var(--accent-blue);
+    font-weight: 500;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+  .hero-badge .pulse {
+    width: 8px; height: 8px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+  .hero h1 {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.15;
+    background: linear-gradient(135deg, #fff 0%, #a0a0c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-dim);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero .date-range {
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(79,143,255,0.3);
+  }
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+  .stat-card:nth-child(2) .stat-number { background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-card:nth-child(3) .stat-number { background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-card:nth-child(4) .stat-number { background: var(--gradient-4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 64px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .section-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .section-icon.blue { background: rgba(79,143,255,0.12); }
+  .section-icon.purple { background: rgba(168,85,247,0.12); }
+  .section-icon.orange { background: rgba(249,115,22,0.12); }
+  .section-icon.green { background: rgba(34,211,238,0.12); }
+  .section-icon.pink { background: rgba(236,72,153,0.12); }
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  /* News Card */
+  .news-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(79,143,255,0.25);
+    box-shadow: 0 8px 32px rgba(79,143,255,0.06);
+  }
+  .news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+  }
+  .news-card.blue::before { background: var(--gradient-1); }
+  .news-card.purple::before { background: linear-gradient(180deg, #a855f7, #6366f1); }
+  .news-card.orange::before { background: var(--gradient-3); }
+  .news-card.green::before { background: var(--gradient-4); }
+  .news-card.pink::before { background: linear-gradient(180deg, #ec4899, #a855f7); }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .tag-blue { background: rgba(79,143,255,0.12); color: var(--accent-blue); }
+  .tag-purple { background: rgba(168,85,247,0.12); color: var(--accent-purple); }
+  .tag-orange { background: rgba(249,115,22,0.12); color: var(--accent-orange); }
+  .tag-green { background: rgba(34,211,238,0.12); color: var(--accent-green); }
+  .tag-pink { background: rgba(236,72,153,0.12); color: var(--accent-pink); }
+  .tag-red { background: rgba(239,68,68,0.12); color: var(--accent-red); }
+
+  .card-date {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .card-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .card-body {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .card-body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .card-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .highlight-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .highlight-chip .num {
+    font-weight: 700;
+    color: var(--accent-blue);
+  }
+
+  .card-source {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .card-source a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .card-source a:hover {
+    color: #6ba3ff;
+    text-decoration: underline;
+  }
+
+  /* Timeline divider */
+  .timeline-date {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 32px;
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .timeline-date::before,
+  .timeline-date::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 48px 0 64px;
+    border-top: 1px solid var(--card-border);
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  footer .made-with {
+    margin-bottom: 8px;
+  }
+  footer a {
+    color: var(--accent-blue);
+    text-decoration: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 34px; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .news-card { padding: 24px; }
+    .card-title { font-size: 19px; }
+    .hero { padding: 48px 0 40px; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 28px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-card { padding: 16px; }
+    .stat-number { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-badge"><span class="pulse"></span> AI WEEKLY DIGEST</div>
+    <h1>AI 热点周报</h1>
+    <p class="subtitle">模型大战白热化、千亿融资刷新纪录、开源生态加速裂变 —— 过去三天 AI 领域发生了什么？</p>
+    <p class="date-range">2026 年 4 月 2 日 — 4 月 4 日</p>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-number">$1220亿</div>
+      <div class="stat-label">OpenAI 最新融资</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">9亿</div>
+      <div class="stat-label">ChatGPT 周活用户</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10万亿</div>
+      <div class="stat-label">Claude Mythos 5 参数量</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">$3000亿</div>
+      <div class="stat-label">Q1 全球 AI 风投总额</div>
+    </div>
+  </div>
+
+  <!-- Section 1: Model Releases -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon blue">&#129302;</div>
+      <h2 class="section-title">大模型发布</h2>
+    </div>
+
+    <div class="news-card blue">
+      <div class="card-top">
+        <span class="card-tag tag-blue">OpenAI</span>
+        <span class="card-date">4 月 3 日</span>
+      </div>
+      <div class="card-title">GPT-5.4 正式发布：100 万 Token 上下文 + ChatGPT 超级应用</div>
+      <div class="card-body">
+        OpenAI 发布 <strong>GPT-5.4 及 GPT-5.4 Thinking</strong>，首次将 GPT-5.3-codex 的前沿编程能力融入主线推理模型。API 版本支持高达 <strong>100 万 Token 上下文窗口</strong>，为 OpenAI 史上最大。相比 GPT-5.2，单条回答事实错误率降低 33%，整体回答含错概率降低 18%。
+        <br><br>
+        与此同时，OpenAI 正式推出 <strong>ChatGPT 超级应用</strong>，将聊天、Codex 编码代理、网页搜索及广泛的代理能力整合为一个"代理优先"体验。目前 ChatGPT 周活用户已达 <strong>9 亿</strong>，月收入突破 <strong>20 亿美元</strong>。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">1M</span> Token 上下文</span>
+        <span class="highlight-chip"><span class="num">-33%</span> 事实错误率</span>
+        <span class="highlight-chip"><span class="num">$20亿</span> 月收入</span>
+      </div>
+      <div class="card-source">来源：<a href="https://openai.com/index/introducing-gpt-5-4/" target="_blank">OpenAI 官方博客</a> · <a href="https://techcrunch.com/2026/03/05/openai-launches-gpt-5-4-with-pro-and-thinking-versions/" target="_blank">TechCrunch</a></div>
+    </div>
+
+    <div class="news-card purple">
+      <div class="card-top">
+        <span class="card-tag tag-purple">Google</span>
+        <span class="card-date">4 月 2 日</span>
+      </div>
+      <div class="card-title">Google 发布 Gemma 4：最强开源模型 + TurboQuant 压缩突破</div>
+      <div class="card-body">
+        Google DeepMind 发布 <strong>Gemma 4</strong> 系列开源多模态模型，提供 E2B / E4B / 26B MoE / 31B Dense 四种规格，采用 Apache 2.0 许可。<strong>31B 模型在 Arena AI 文本排行榜排名第 3</strong>，超越 20 倍参数量的竞品。
+        <br><br>
+        配套发布的 <strong>TurboQuant</strong> KV 缓存压缩技术，在不损失精度的前提下将内存占用降低约 4 倍，使 Gemma 4 31B 可在<strong>单张 RTX 5090 上运行完整 256K 上下文</strong>，甚至在 Apple Silicon 上实现长上下文推理。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">#3</span> Arena 排行榜</span>
+        <span class="highlight-chip"><span class="num">4x</span> 内存压缩</span>
+        <span class="highlight-chip"><span class="num">256K</span> 单卡推理</span>
+      </div>
+      <div class="card-source">来源：<a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/" target="_blank">Google Blog</a> · <a href="https://huggingface.co/blog/gemma4" target="_blank">Hugging Face</a></div>
+    </div>
+
+    <div class="news-card green">
+      <div class="card-top">
+        <span class="card-tag tag-green">阿里巴巴</span>
+        <span class="card-date">4 月 2 日</span>
+      </div>
+      <div class="card-title">阿里发布 Qwen3.6-Plus：国产最强编程模型</div>
+      <div class="card-body">
+        阿里云发布新一代大语言模型 <strong>Qwen3.6-Plus</strong>，在系列权威编程评测中超越 <strong>2-3 倍参数量</strong>的 GLM-5、Kimi-K2.5 等竞品。模型支持 <strong>100 万词元上下文窗口</strong>，已针对 OpenClaw、Qwen Code、Claude Code、Cline 等主流 Agent 框架完成优化适配。
+        <br><br>
+        同期，阿里还发布了全新图像生成模型 <strong>Wan2.7-Image</strong>，主打高可控性与个性化生成。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">1M</span> 上下文窗口</span>
+        <span class="highlight-chip"><span class="num">Agent</span> 框架适配</span>
+      </div>
+      <div class="card-source">来源：<a href="https://finance.sina.com.cn/jjxw/2026-04-02/doc-inhtavkc4442500.shtml" target="_blank">新浪财经</a> · <a href="https://www.ithome.com/0/935/274.htm" target="_blank">IT之家</a></div>
+    </div>
+
+    <div class="news-card orange">
+      <div class="card-top">
+        <span class="card-tag tag-orange">Anthropic</span>
+        <span class="card-date">4 月 2 日</span>
+      </div>
+      <div class="card-title">Claude Mythos 5 发布：首个 10 万亿参数模型</div>
+      <div class="card-body">
+        Anthropic 发布 <strong>Claude Mythos 5</strong>，这是业界首个被广泛认可的 <strong>10 万亿参数</strong>大模型，专为网络安全、复杂编程等高风险场景而设计。该模型代表了当前 AI 规模化能力的新里程碑。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">10T</span> 参数</span>
+        <span class="highlight-chip"><span class="num">安全</span> 优先设计</span>
+      </div>
+      <div class="card-source">来源：<a href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers</a> · <a href="https://www.buildez.ai/blog/ai-trending-april-2026-developments" target="_blank">BuildEZ</a></div>
+    </div>
+
+    <div class="news-card pink">
+      <div class="card-top">
+        <span class="card-tag tag-red">DeepSeek</span>
+        <span class="card-date">4 月初</span>
+      </div>
+      <div class="card-title">DeepSeek V4 即将登场：万亿参数 MoE + 原生多模态</div>
+      <div class="card-body">
+        DeepSeek V4 预计数周内正式发布，采用 <strong>1 万亿参数 MoE 架构</strong>，每个 Token 激活约 370 亿参数（与 V3 相当），推理成本可控。模型原生支持<strong>文本、图像、视频</strong>多模态处理，具备长期记忆突破，训练成本仅约 <strong>520 万美元</strong> —— 仅为同级模型的零头。
+        <br><br>
+        据报道，发布延迟的原因是团队正在为华为昇腾和寒武纪芯片重写适配代码。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">1T</span> 总参数</span>
+        <span class="highlight-chip"><span class="num">37B</span> 激活参数</span>
+        <span class="highlight-chip"><span class="num">$520万</span> 训练成本</span>
+      </div>
+      <div class="card-source">来源：<a href="https://www.nxcode.io/resources/news/deepseek-v4-release-specs-benchmarks-2026" target="_blank">NxCode</a> · <a href="https://dataconomy.com/2026/03/16/deepseek-v4-and-tencents-new-hunyuan-model-to-launch-in-april/" target="_blank">Dataconomy</a></div>
+    </div>
+
+    <div class="news-card blue">
+      <div class="card-top">
+        <span class="card-tag tag-blue">微软</span>
+        <span class="card-date">4 月 3 日</span>
+      </div>
+      <div class="card-title">微软推出 3 款自研 AI 模型，加速"去 OpenAI 化"</div>
+      <div class="card-body">
+        微软 AI 超级智能团队正式推出 <strong>MAI-Transcribe-1</strong>（语音转录）、<strong>MAI-Voice-1</strong>（语音生成）和 <strong>MAI-Image-2</strong>（图像创建）三款模型。其中 MAI-Transcribe-1 在全语种测试中错误率仅 <strong>3.9%</strong>，为同类最佳。此举标志着微软加速减少对 OpenAI 的依赖。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">3.9%</span> 转录错误率</span>
+        <span class="highlight-chip"><span class="num">3款</span> 自研模型</span>
+      </div>
+      <div class="card-source">来源：<a href="https://k.sina.com.cn/article_7857201856_1d45362c001903xnrs.html" target="_blank">新浪科技</a></div>
+    </div>
+  </section>
+
+  <!-- Section 2: Funding -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon purple">&#128176;</div>
+      <h2 class="section-title">融资与并购</h2>
+    </div>
+
+    <div class="news-card purple">
+      <div class="card-top">
+        <span class="card-tag tag-purple">融资</span>
+        <span class="card-date">4 月 3 日</span>
+      </div>
+      <div class="card-title">OpenAI 完成 1220 亿美元融资，估值 8520 亿美元</div>
+      <div class="card-body">
+        OpenAI 正式宣布完成史上最大融资，规模达 <strong>1220 亿美元</strong>，投后估值 <strong>8520 亿美元</strong>。本轮由 Amazon（500 亿）、Nvidia（300 亿）、SoftBank（300 亿）领投，还包含 <strong>30 亿美元散户投资</strong>。OpenAI 预计年内登陆公开市场。
+        <br><br>
+        此外，OpenAI 还收购了知名科技播客 <strong>TBPN</strong>，进一步拓展其媒体版图。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">$1220亿</span> 募资</span>
+        <span class="highlight-chip"><span class="num">$8520亿</span> 估值</span>
+        <span class="highlight-chip"><span class="num">IPO</span> 预计年内</span>
+      </div>
+      <div class="card-source">来源：<a href="https://openai.com/index/accelerating-the-next-phase-ai/" target="_blank">OpenAI</a> · <a href="https://techcrunch.com/2026/03/31/openai-not-yet-public-raises-3b-from-retail-investors-in-monster-122b-fund-raise/" target="_blank">TechCrunch</a></div>
+    </div>
+
+    <div class="news-card orange">
+      <div class="card-top">
+        <span class="card-tag tag-orange">并购</span>
+        <span class="card-date">回顾</span>
+      </div>
+      <div class="card-title">SpaceX 收购 xAI：史上最大合并案，合计估值 1.25 万亿美元</div>
+      <div class="card-body">
+        马斯克旗下 SpaceX 以全股票交易方式收购 xAI，<strong>估值 SpaceX 1万亿 + xAI 2500亿</strong>，合计 1.25 万亿美元，创下史上最大并购纪录。马斯克表示，合并核心目标是建设<strong>太空数据中心</strong>，以突破地面 AI 算力的电力和散热瓶颈。SpaceX 计划年内 IPO，目标估值高达 <strong>1.75 万亿美元</strong>。
+      </div>
+      <div class="card-source">来源：<a href="https://techcrunch.com/2026/02/02/elon-musk-spacex-acquires-xai-data-centers-space-merger/" target="_blank">TechCrunch</a> · <a href="https://www.cnbc.com/2026/02/03/musk-xai-spacex-biggest-merger-ever.html" target="_blank">CNBC</a></div>
+    </div>
+
+    <div class="news-card green">
+      <div class="card-top">
+        <span class="card-tag tag-green">市场</span>
+        <span class="card-date">Q1 总结</span>
+      </div>
+      <div class="card-title">Q1 2026 全球 AI 风投创历史新高：3000 亿美元，占 VC 总额 80%</div>
+      <div class="card-body">
+        2026 年第一季度，全球风投总额达到 <strong>3000 亿美元</strong>的历史新高，其中 <strong>80% 直接流向 AI 领域</strong>。AI 公司在前三个月共获得约 2420 亿美元投资。中国 AI 词元调用量突破日均 <strong>140 万亿</strong>，较 2024 年初增长超 1000 倍。
+      </div>
+      <div class="card-source">来源：<a href="https://blog.mean.ceo/ai-startup-funding-news-april-2026/" target="_blank">Mean CEO Blog</a> · <a href="https://www.jiemian.com/article/14205898.html" target="_blank">界面新闻</a></div>
+    </div>
+  </section>
+
+  <!-- Section 3: Applications -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon green">&#128161;</div>
+      <h2 class="section-title">应用与突破</h2>
+    </div>
+
+    <div class="news-card green">
+      <div class="card-top">
+        <span class="card-tag tag-green">医疗 AI</span>
+        <span class="card-date">4 月 2 日</span>
+      </div>
+      <div class="card-title">Noah Labs 获 FDA 突破性设备认证：5 秒语音检测心衰</div>
+      <div class="card-body">
+        Noah Labs 的 AI 工具 <strong>Vox</strong> 获得 FDA 突破性设备认证。该设备通过分析用户每日 <strong>5 秒语音录音</strong>中的声学特征，利用超过 <strong>300 万条语音样本</strong>训练的 AI 模型，检测与肺充血和体液潴留相关的生理变化，从而远程监测心衰恶化。已在 Mayo Clinic 和 UCSF 等机构完成 5 项多中心临床试验验证。
+      </div>
+      <div class="card-highlights">
+        <span class="highlight-chip"><span class="num">5秒</span> 语音样本</span>
+        <span class="highlight-chip"><span class="num">5项</span> 临床试验</span>
+        <span class="highlight-chip"><span class="num">FDA</span> 突破性认证</span>
+      </div>
+      <div class="card-source">来源：<a href="https://www.medicaldevice-network.com/news/noah-labs-lands-fda-breakthrough-designation-for-ai-voice-based-heart-failure-monitor/" target="_blank">Medical Device Network</a> · <a href="https://cardiovascularbusiness.com/topics/clinical/heart-failure/fda-sees-promise-voice-based-ai-model-heart-failure" target="_blank">Cardiovascular Business</a></div>
+    </div>
+
+    <div class="news-card blue">
+      <div class="card-top">
+        <span class="card-tag tag-blue">自动驾驶</span>
+        <span class="card-date">4 月 3 日</span>
+      </div>
+      <div class="card-title">ChatGPT 登陆 Apple CarPlay，高德开源机器人基座模型</div>
+      <div class="card-body">
+        OpenAI 宣布 <strong>ChatGPT 适配 Apple CarPlay</strong>，用户可通过车载系统以语音交互方式使用 AI 助手。与此同时，高德地图正式全量开源其<strong>通用机器人基座模型 ABot-M0</strong>，向行业开放自动化导航与交互能力。
+      </div>
+      <div class="card-source">来源：<a href="https://zhuanlan.zhihu.com/p/2022971744789492869" target="_blank">知乎 AI 早报</a></div>
+    </div>
+
+    <div class="news-card pink">
+      <div class="card-top">
+        <span class="card-tag tag-pink">芯片 AI</span>
+        <span class="card-date">4 月 2 日</span>
+      </div>
+      <div class="card-title">Cognichip 融资 6000 万美元：用 AI 设计 AI 芯片</div>
+      <div class="card-body">
+        Cognichip 完成 <strong>6000 万美元</strong>融资，其核心技术是利用 AI 来设计 AI 芯片，有望将芯片开发成本降低超过 <strong>75%</strong>，开发周期缩短一半。这一"AI for AI"的递归进化模式正在加速硬件迭代。
+      </div>
+      <div class="card-source">来源：<a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank">Crescendo AI News</a></div>
+    </div>
+  </section>
+
+  <!-- Section 4: Policy -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon orange">&#9878;&#65039;</div>
+      <h2 class="section-title">政策与监管</h2>
+    </div>
+
+    <div class="news-card orange">
+      <div class="card-top">
+        <span class="card-tag tag-orange">监管</span>
+        <span class="card-date">持续跟踪</span>
+      </div>
+      <div class="card-title">EU AI Act 倒计时 4 个月：可解释 AI 投资浪潮兴起</div>
+      <div class="card-body">
+        欧盟《AI 法案》将于 2026 年 8 月 2 日进入全面适用阶段，距今仅剩 4 个月。这推动了大规模的<strong>"可解释 AI"(XAI) 和自治治理模块</strong>投资浪潮，企业竞相确保其 AI 系统符合透明度和问责要求。
+      </div>
+      <div class="card-source">来源：<a href="https://www.buildez.ai/blog/ai-trending-april-2026-developments" target="_blank">BuildEZ</a></div>
+    </div>
+
+    <div class="news-card blue">
+      <div class="card-top">
+        <span class="card-tag tag-blue">政策</span>
+        <span class="card-date">4 月 2 日</span>
+      </div>
+      <div class="card-title">加州州长：AI 初创企业风险由加州而非联邦政府评估</div>
+      <div class="card-body">
+        加州州长纽森(Newsom)表示，加州 AI 初创企业的风险评估应由加州主导，而非特朗普政府。此举凸显了美国联邦与州政府在 AI 监管主导权上的持续博弈。微软同日宣布向新加坡投入 <strong>55 亿美元</strong>，支持该国 AI 教育与非营利组织发展。
+      </div>
+      <div class="card-source">来源：<a href="https://calmatters.org/politics/2026/04/newsom-moves-for-california-ai-startups/" target="_blank">CalMatters</a> · <a href="https://news.microsoft.com/source/asia/2026/04/01/microsoft-announces-5-5-billion-spend-and-new-microsoft-elevate-programs-to-support-every-tertiary-student-educator-and-nonprofit-to-power-singapores-ai-future/" target="_blank">Microsoft Source Asia</a></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="made-with">由 Claude 自动整理 · 数据来源于公开报道</p>
+    <p>AI 热点周报 · 2026 年 4 月 4 日生成</p>
+  </div>
+</footer>
+
+</body>
+</html>
