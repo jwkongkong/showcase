@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showcase</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-hover: #334155;
+    --border: #334155;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --accent: #818cf8;
+    --accent-glow: rgba(129, 140, 248, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .header {
+    text-align: center;
+    padding: 60px 24px 40px;
+  }
+  .header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+  .header .count {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s ease;
+  }
+  .card:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-1px);
+  }
+  .card-body { flex: 1; }
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .card-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+  .card-arrow {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-left: 16px;
+    transition: transform 0.2s;
+  }
+  .card:hover .card-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-muted);
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 640px) {
+    .header { padding: 40px 16px 24px; }
+    .header h1 { font-size: 1.8rem; }
+    .container { padding: 0 16px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Showcase</h1>
+  <p>My collection of shared pages</p>
+  <span class="count">1 page</span>
+</div>
+
+<div class="container">
+
+      <a href="izu-travel-guide/" class="card">
+        <div class="card-body">
+          <h2 class="card-title">伊豆旅行参考指南 — 悬崖别墅 · 瀑布温泉 · 金目鲷</h2>
+          
+          <span class="card-date">2026-04-04</span>
+        </div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
+</div>
+
+<footer>
+  Powered by GitHub Pages &middot; Last updated 2026-04-04
+</footer>
+
+</body>
+</html>

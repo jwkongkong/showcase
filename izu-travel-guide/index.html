@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊豆旅行参考指南 — 悬崖别墅 · 瀑布温泉 · 金目鲷</title>
+<style>
+  /* Google Fonts unavailable in China, use system fonts */
+
+  :root {
+    --bg: #f5f0eb;
+    --card-bg: #ffffff;
+    --accent: #b8503e;
+    --accent-light: #d4896e;
+    --text: #2c2520;
+    --text-muted: #7a6e64;
+    --gold: #c4a35a;
+    --teal: #3d7a73;
+    --blue: #3a6b8c;
+    --shadow: 0 4px 24px rgba(44,37,32,.08);
+    --shadow-hover: 0 8px 40px rgba(44,37,32,.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #1a1512;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://a0.muscache.com/im/pictures/hosting/Hosting-10398054/original/7a928889-e05e-49ac-bba1-c8e7976d243c.jpeg?im_w=1200') center/cover;
+    filter: brightness(0.55);
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+  .hero:hover .hero-bg { transform: scale(1.0); }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 0 24px;
+    max-width: 800px;
+  }
+  .hero-content h1 {
+    font-family: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK SC', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0,0,0,.4);
+  }
+  .hero-content p {
+    font-size: 1.15rem;
+    font-weight: 300;
+    opacity: 0.9;
+    letter-spacing: 1px;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    opacity: 0.6;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    animation: float 2s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes float {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── Navigation ── */
+  .nav-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,240,235,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 14px 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .nav-bar a {
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color .2s;
+    position: relative;
+  }
+  .nav-bar a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width .3s;
+  }
+  .nav-bar a:hover { color: var(--accent); }
+  .nav-bar a:hover::after { width: 100%; }
+
+  /* ── Section Layout ── */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-header .tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-light);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-family: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK SC', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── Image Gallery ── */
+  .gallery {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .gallery-3 {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 280px 280px;
+  }
+  .gallery-3 .gi:first-child {
+    grid-row: 1 / 3;
+  }
+  .gallery-4 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 300px;
+  }
+  .gallery-2 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 360px;
+  }
+  .gi {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .gi img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease;
+  }
+  .gi:hover img {
+    transform: scale(1.06);
+  }
+  .gi .caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 16px 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,.55));
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .gi:hover .caption { opacity: 1; }
+
+  /* ── Info Card ── */
+  .info-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 40px;
+    transition: box-shadow .3s;
+  }
+  .info-card:hover { box-shadow: var(--shadow-hover); }
+  .info-card h3 {
+    font-family: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK SC', serif;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+  .info-card .subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .detail-item {
+    padding: 16px;
+    background: var(--bg);
+    border-radius: 10px;
+  }
+  .detail-item .label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .detail-item .value {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ── Highlights ── */
+  .highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--bg);
+    border-radius: 20px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    transition: background .2s, color .2s;
+  }
+  .chip:hover { background: var(--accent); color: #fff; }
+
+  /* ── Price Banner ── */
+  .price-banner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(135deg, #2c2520 0%, #3d332a 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin-top: 28px;
+  }
+  .price-banner .price-big {
+    font-family: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK SC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .price-banner .price-note {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: none;
+    border-top: 1px solid rgba(0,0,0,.06);
+  }
+
+  /* ── Itinerary ── */
+  .itinerary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .day-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .day-card .day-header {
+    padding: 20px 28px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    color: #fff;
+  }
+  .day-card .day-header h3 {
+    font-family: 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK SC', serif;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+  .day-card .day-body {
+    padding: 24px 28px;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,.04);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-item .time {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    min-width: 48px;
+    padding-top: 2px;
+  }
+  .timeline-item .desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* ── Tips ── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .tip-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 28px;
+    border-left: 3px solid var(--accent);
+  }
+  .tip-card h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .tip-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── Links ── */
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all .2s;
+    margin-top: 12px;
+    margin-right: 8px;
+  }
+  .link-btn.primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .link-btn.primary:hover { background: #a0422f; transform: translateY(-1px); }
+  .link-btn.outline {
+    border: 1px solid var(--accent-light);
+    color: var(--accent);
+  }
+  .link-btn.outline:hover { background: var(--accent); color: #fff; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .gallery-3 { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .gallery-3 .gi:first-child { grid-row: auto; }
+    .gallery-4 { grid-template-columns: 1fr; grid-template-rows: 220px; }
+    .gallery-2 { grid-template-columns: 1fr; grid-template-rows: 240px; }
+    .gi { height: 240px; }
+    .itinerary { grid-template-columns: 1fr; }
+    .nav-bar { gap: 20px; font-size: 0.8rem; }
+    .price-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .info-card { padding: 24px; }
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.88);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    backdrop-filter: blur(4px);
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(0,0,0,.4);
+  }
+
+  /* ── Warning Box ── */
+  .warn-box {
+    background: #fff8f0;
+    border: 1px solid #f0d8b8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #8a6530;
+  }
+  .warn-box strong { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>伊豆旅行参考指南</h1>
+    <p>悬崖别墅 · 瀑布温泉 · 金目鲷 — 来自B站UP主「芽腿」vlog222的伊豆之夏</p>
+  </div>
+  <div class="hero-scroll">↓ 向下滚动</div>
+</div>
+
+<!-- Nav -->
+<nav class="nav-bar">
+  <a href="#stay">住 宿</a>
+  <a href="#onsen">温 泉</a>
+  <a href="#food">美 食</a>
+  <a href="#itinerary">行 程</a>
+  <a href="#tips">实用贴士</a>
+</nav>
+
+<!-- ╔═══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 1 — ACCOMMODATION               ║ -->
+<!-- ╚═══════════════════════════════════════════╝ -->
+<section id="stay" class="section">
+  <div class="section-header">
+    <span class="tag">Accommodation</span>
+    <h2>伊豆半岛最东端 · 悬崖海景别墅</h2>
+    <p>国立公园内，海拔77米的岬角尖端，坐听太平洋两侧不同的海浪声</p>
+  </div>
+
+  <div class="gallery gallery-3">
+    <div class="gi">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-10398054/original/9af857e5-700d-4ad2-80c8-3eee378819aa.jpeg?im_w=1200" alt="别墅海景全景" loading="lazy">
+      <div class="caption">岬角尖端俯瞰太平洋</div>
+    </div>
+    <div class="gi">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-10398054/original/19a4db38-2489-4983-b06d-6a3861762ca6.jpeg?im_w=1200" alt="庭院草坪" loading="lazy">
+      <div class="caption">草坪庭院 · 可BBQ烧烤</div>
+    </div>
+    <div class="gi">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-10398054/original/e739a7dd-a360-463b-8f7e-06f3d7677456.jpeg?im_w=1200" alt="室外浴缸" loading="lazy">
+      <div class="caption">室外圆形浴缸 · 可容纳4人</div>
+    </div>
+  </div>
+
+  <div class="gallery gallery-4">
+    <div class="gi">
+      <img src="https://a0.muscache.com/im/pictures/d63dd535-db48-40f6-b134-599e0d7419c4.jpg?im_w=1200" alt="室内" loading="lazy">
+      <div class="caption">温馨室内空间</div>
+    </div>
+    <div class="gi">
+      <img src="https://a0.muscache.com/im/pictures/aa472530-993f-4912-a316-cbd8b90caef4.jpg?im_w=1200" alt="壁炉" loading="lazy">
+      <div class="caption">冬季可用壁炉</div>
+    </div>
+    <div class="gi">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-10398054/original/bbc2102a-bdd4-4337-9531-29430cacd6d2.jpeg?im_w=1200" alt="夕阳海景" loading="lazy">
+      <div class="caption">日落时分的海景</div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3>伊豆半島最東端 海を見下ろす絶景庭でBBQ・外風呂・花火・薪ストーブ</h3>
+    <p class="subtitle">Airbnb · 超级房东 Asami · ★ 4.95（64条评价）</p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">房型</div>
+        <div class="value">整栋一户建 · 120㎡<br>3卧室 · 2双人床 · 1浴室<br>最多可住8人</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">位置</div>
+        <div class="value">静冈县伊东市<br>靠近富戸駅（Futo Station）<br>伊豆半岛最东端岬角</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">环境</div>
+        <div class="value">国立公园内 · 海拔77m<br>可俯瞰太平洋和伊豆七岛<br>同时听到两侧海浪声</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">特色体验</div>
+        <div class="value">庭院BBQ · 放花火<br>室外大型浴缸<br>香草花园可自由采摘</div>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <span class="chip">🌊 海景庭院</span>
+      <span class="chip">🔥 BBQ烧烤</span>
+      <span class="chip">🛁 室外浴缸</span>
+      <span class="chip">🪵 壁炉(冬季)</span>
+      <span class="chip">🌿 香草花园</span>
+      <span class="chip">🐔 乌骨鸡</span>
+      <span class="chip">🎆 可放花火</span>
+      <span class="chip">📵 无电视</span>
+    </div>
+
+    <div class="price-banner">
+      <div>
+        <div class="price-big">¥25,000 ~ 120,000</div>
+        <div style="font-size:0.85rem;opacity:0.7">每晚 · 视季节而定</div>
+      </div>
+      <div class="price-note">
+        淡季约25,000日元/晚起 · 旺季约100,000~120,000日元/晚<br>
+        视频中UP主约120,000日元/晚（≈6,000人民币）<br>
+        3-4人均摊约1,500-2,000人民币/人，性价比不错
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠ 注意：</strong>倡导环保理念，不提供合成洗剂（洗发水、肥皂等需自带或使用天然产品）。床品主要使用麻质材料。有小孩请提前告知，会安装安全护栏。
+    </div>
+
+    <div style="margin-top:20px">
+      <a href="https://www.airbnb.jp/rooms/10398054" target="_blank" class="link-btn primary">🏠 查看 Airbnb 房源</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ╔═══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 2 — ONSEN                       ║ -->
+<!-- ╚═══════════════════════════════════════════╝ -->
+<section id="onsen" class="section">
+  <div class="section-header">
+    <span class="tag">Onsen</span>
+    <h2>大滝温泉 天城荘（AMAGISO）</h2>
+    <p>在落差30米的「大滝」瀑布旁泡温泉 — 日本全国独一无二的体验</p>
+  </div>
+
+  <div class="gallery gallery-2">
+    <div class="gi">
+      <img src="https://www.amagisou.jp/img/onsen_01.jpg" alt="大滝瀑布温泉" loading="lazy">
+      <div class="caption">伊豆最大瀑布「大滝」旁的露天温泉</div>
+    </div>
+    <div class="gi">
+      <img src="https://www.amagisou.jp/img/onsen_02_01.jpg" alt="温泉浴池" loading="lazy">
+      <div class="caption">28种浴池可体验</div>
+    </div>
+  </div>
+
+  <div class="gallery gallery-4">
+    <div class="gi">
+      <img src="https://www.amagisou.jp/img/onsen_02_02.jpg" alt="温泉区域" loading="lazy">
+      <div class="caption">室外温泉区</div>
+    </div>
+    <div class="gi">
+      <img src="https://www.amagisou.jp/img/onsen_02_03.jpg" alt="温泉浴池" loading="lazy">
+      <div class="caption">多样浴池体验</div>
+    </div>
+    <div class="gi">
+      <img src="https://www.amagisou.jp/img/facility_01.jpg" alt="设施" loading="lazy">
+      <div class="caption">馆内设施</div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3>大滝温泉 天城荘 AMAGISO</h3>
+    <p class="subtitle">电影《罗马浴场》拍摄地 · 河津七滝景区内</p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">门票</div>
+        <div class="value">大人 ¥1,000<br>小学生 ¥750<br>幼儿 ¥500</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">营业时间</div>
+        <div class="value">10:00 ~ 16:30<br>（最后受付 16:00）<br>定休日：基本每周三</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">设施</div>
+        <div class="value">共28种浴池<br>3处包场浴池（先到先得）<br>免费使用</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">交通</div>
+        <div class="value">河津站 → 东海巴士（修善寺方向）<br>约20分钟<br>「大滝入口」站下车即到</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠ 重要提示：</strong>室外温泉区域为<strong>混浴</strong>，必须穿泳衣入浴。可现场租借泳衣（收费），建议自带泳衣前往。<br>
+      <strong>⚠ 当前状态：</strong>目前仅运营日归温泉，正在翻新中，暂不接受住宿预约。建议出发前访问官网确认最新营业状态。
+    </div>
+
+    <div style="margin-top:20px">
+      <a href="https://www.amagisou.jp/" target="_blank" class="link-btn primary">♨ 访问官网</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ╔═══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 3 — FOOD                        ║ -->
+<!-- ╚═══════════════════════════════════════════╝ -->
+<section id="food" class="section">
+  <div class="section-header">
+    <span class="tag">Cuisine</span>
+    <h2>金目鲷料理</h2>
+    <p>伊豆半岛最具代表性的美食 — 酱煮金目鲷（金目鯛の煮付け）</p>
+  </div>
+
+  <div class="gallery gallery-2">
+    <div class="gi">
+      <img src="https://1930.bz/wp/wp-content/uploads/2025/12/3e1478a66b2044d8d1a9f218bd74bc92-1024x741.jpg" alt="金目鲷煮付" loading="lazy">
+      <div class="caption">徳造丸 · 金目鲷料理</div>
+    </div>
+    <div class="gi">
+      <img src="https://1930.bz/wp/wp-content/uploads/2025/04/4fc70cca8310ed83e32c446cafa48806.jpg" alt="金目鲷料理" loading="lazy">
+      <div class="caption">金目鯛の煮付け</div>
+    </div>
+  </div>
+
+  <div class="gallery gallery-4">
+    <div class="gi">
+      <img src="https://1930.bz/wp/wp-content/uploads/2025/04/c0d3a8cba0b882b61603d4da8538fa83.jpg" alt="菜品" loading="lazy">
+      <div class="caption">丰富的金目鲷菜品</div>
+    </div>
+    <div class="gi">
+      <img src="https://1930.bz/wp/wp-content/uploads/2025/04/S__19152972-1024x768.jpg" alt="店内" loading="lazy">
+      <div class="caption">店铺环境</div>
+    </div>
+    <div class="gi">
+      <img src="https://1930.bz/wp/wp-content/uploads/2025/04/S__19152968-1024x768.jpg" alt="食材" loading="lazy">
+      <div class="caption">新鲜食材</div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3>金目鯛の駅 伊豆高原（徳造丸）</h3>
+    <p class="subtitle">伊豆高原站旁 · 金目鲷专门店 · 伊豆著名连锁海鲜品牌</p>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">招牌菜</div>
+        <div class="value">金目鯛の煮付け<br>（酱煮金目鲷·整条大鱼）<br>金目鯛煮付け单品约¥1,800</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">推荐菜品</div>
+        <div class="value">カニ味噌汁定食 ≈ ¥550<br>トマトサラダ（番茄沙拉）<br>季节限定甜品</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">位置</div>
+        <div class="value">伊東市 · 伊豆高原站旁<br>国道沿线 · 带宠物友好<br>附设狗乐园</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">其他推荐</div>
+        <div class="value">市場の食堂 金目亭（下田市）<br>七滝茶屋（河津七滝附近）<br>伊豆海鮮どんぶりや（河津站前）</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <a href="https://1930.bz/amimoto/kinmeeki/" target="_blank" class="link-btn primary">🐟 查看官网</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ╔═══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 4 — ITINERARY                   ║ -->
+<!-- ╚═══════════════════════════════════════════╝ -->
+<section id="itinerary" class="section">
+  <div class="section-header">
+    <span class="tag">Itinerary</span>
+    <h2>行程建议</h2>
+    <p>基于视频中的行程路线，两天一夜伊豆之旅</p>
+  </div>
+
+  <div class="itinerary">
+    <div class="day-card">
+      <div class="day-header">
+        <h3>Day 1 — 伊豆半岛</h3>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <span class="time">上午</span>
+          <span class="desc">从东京出发，乘坐踊子号特急列车前往伊豆（约2~2.5小时）；抵达后前往河津七滝，徒步瀑布步道</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">中午</span>
+          <span class="desc">在河津附近享用金目鲷料理午餐</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">下午</span>
+          <span class="desc">大滝温泉 天城荘 日归泡汤（10:00-16:30），体验瀑布旁露天温泉</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">傍晚</span>
+          <span class="desc">入住岬角悬崖别墅，安顿行李</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">晚上</span>
+          <span class="desc">庭院BBQ烧烤，看日落，享受星空与海浪声</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <h3>Day 2 — 伊豆 → 东京</h3>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <span class="time">上午</span>
+          <span class="desc">在别墅享受海景早餐，漫步岬角庭院</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">中午</span>
+          <span class="desc">前往城ヶ崎海岸观光（大室山火山喷发形成的壮观海岸线）</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">下午</span>
+          <span class="desc">返回东京</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">晚上</span>
+          <span class="desc">东京自由活动</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ╔═══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 5 — TIPS                        ║ -->
+<!-- ╚═══════════════════════════════════════════╝ -->
+<section id="tips" class="section">
+  <div class="section-header">
+    <span class="tag">Tips</span>
+    <h2>实用贴士</h2>
+    <p>出发前需要了解的几件事</p>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <h4>🚃 交通方式</h4>
+      <p>东京 → 伊豆：踊子号/超景踊子号特急列车，约2~2.5小时。当地建议租车自驾，方便前往各景点。</p>
+    </div>
+    <div class="tip-card">
+      <h4>🗓 最佳季节</h4>
+      <p>夏季（7-8月）最佳，可同时享受海景和瀑布温泉。视频拍摄于7月。</p>
+    </div>
+    <div class="tip-card">
+      <h4>👙 泳衣必备</h4>
+      <p>天城荘室外温泉为混浴区域，必须穿泳衣入浴。可现场租借但建议自带。</p>
+    </div>
+    <div class="tip-card">
+      <h4>🧴 自带洗浴用品</h4>
+      <p>悬崖别墅倡导环保，不提供合成洗剂。请自带洗发水、沐浴露等。</p>
+    </div>
+    <div class="tip-card">
+      <h4>💰 预算参考（2人/1晚）</h4>
+      <p>住宿 ¥25,000~120,000 · 温泉 ¥2,000 · 餐饮 ¥5,000~8,000/人/天 · 交通 ¥10,000/人往返</p>
+    </div>
+    <div class="tip-card">
+      <h4>📺 原始视频</h4>
+      <p>B站UP主「芽腿」vlog222<br>《伊豆的夏天！吃金目鲷、住海角别墅、东京2日》</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px">
+    <a href="https://www.bilibili.com/video/BV1KDgPzwE8t/" target="_blank" class="link-btn primary">▶ 观看原视频</a>
+    <a href="https://www.airbnb.jp/rooms/10398054" target="_blank" class="link-btn outline">🏠 Airbnb房源</a>
+    <a href="https://www.amagisou.jp/" target="_blank" class="link-btn outline">♨ 天城荘官网</a>
+    <a href="https://1930.bz/amimoto/kinmeeki/" target="_blank" class="link-btn outline">🐟 徳造丸官网</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  信息来源：B站UP主「芽腿」vlog222 · Airbnb · AMAGISO天城荘 · 徳造丸<br>
+  仅供旅行参考，价格和营业信息可能有变动，请出发前确认
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+document.querySelectorAll('.gi').forEach(el => {
+  el.addEventListener('click', () => {
+    const img = el.querySelector('img');
+    if (img) {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+});
+</script>
+
+</body>
+</html>
