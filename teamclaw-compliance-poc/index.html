@@ -1347,6 +1347,173 @@
         </div>
     </div>
 
+    <!-- 12 OpenClaw Config -->
+    <div class="section" id="openclaw">
+        <div class="section-title">
+            <div class="icon" style="background:#F5F3FF;color:#7C3AED;">12</div>
+            OpenClaw 平台配置
+        </div>
+        <p style="font-size:14px;color:var(--gray-500);margin-bottom:16px;">OpenClaw 不使用单一的"System Prompt 输入框"，而是通过工作空间目录下的多个 Markdown 文件自动组装系统提示词。以下是各 Bot 在 OpenClaw 上的配置方式。</p>
+
+        <div class="highlight-box">
+            <strong>核心概念：</strong>OpenClaw 的每个 Agent 拥有独立的工作空间目录，通过 4 个 Markdown 文件定义行为，这些文件在每轮对话时自动注入上下文。
+        </div>
+
+        <!-- 文件说明 -->
+        <h3 style="margin:20px 0 12px;font-size:16px;">工作空间文件说明</h3>
+        <table class="mcp-table" style="margin-bottom:24px;">
+            <thead><tr><th>文件</th><th>作用</th><th>内容要点</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><strong>IDENTITY.md</strong></td>
+                    <td>名称与标识</td>
+                    <td>Bot 名称、emoji、一句话简介</td>
+                </tr>
+                <tr>
+                    <td><strong>SOUL.md</strong></td>
+                    <td>角色与人格</td>
+                    <td>角色定位、性格语气、行为边界（最关键的文件）</td>
+                </tr>
+                <tr>
+                    <td><strong>AGENTS.md</strong></td>
+                    <td>协作指令</td>
+                    <td>上下游关系、工作流程、@协作规则</td>
+                </tr>
+                <tr>
+                    <td><strong>TOOLS.md</strong></td>
+                    <td>工具清单</td>
+                    <td>可用的 MCP 工具和 Skills 列表</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 4个Bot的配置 -->
+        <h3 style="margin:20px 0 12px;font-size:16px;">各 Bot 配置概览</h3>
+
+        <div class="bot-card">
+            <div class="bot-header">
+                <div class="bot-avatar" style="background:#FFFBEB;">🎯</div>
+                <div>
+                    <div class="bot-name">合规协调官</div>
+                    <div class="bot-role">openclaw-config/coordinator/</div>
+                </div>
+            </div>
+            <table class="mcp-table">
+                <tbody>
+                    <tr><td style="width:120px;"><strong>SOUL.md</strong></td><td>专业沉稳、条理清晰；不直接调MCP；用户确认前绝不触发报告和披露</td></tr>
+                    <tr><td><strong>AGENTS.md</strong></td><td>@政策解读&报告Bot / @合规数据Bot / @监管披露Bot；5步流程规则</td></tr>
+                    <tr><td><strong>TOOLS.md</strong></td><td>无 MCP 工具；Skills: workflow-orchestration, task-decomposition, result-synthesis, human-checkpoint</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bot-card">
+            <div class="bot-header">
+                <div class="bot-avatar" style="background:#DBEAFE;">📋</div>
+                <div>
+                    <div class="bot-name">政策解读 & 报告 Bot</div>
+                    <div class="bot-role">openclaw-config/policy-analyst/</div>
+                </div>
+            </div>
+            <table class="mcp-table">
+                <tbody>
+                    <tr><td style="width:120px;"><strong>SOUL.md</strong></td><td>严谨专业、注重细节；基于原文不编造；引用必注明版本</td></tr>
+                    <tr><td><strong>AGENTS.md</strong></td><td>由协调官调用；模式A政策解读 + 模式B报告生成</td></tr>
+                    <tr><td><strong>TOOLS.md</strong></td><td>query_incoming_doc, searchDocs, generateReport；5个Skills</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bot-card">
+            <div class="bot-header">
+                <div class="bot-avatar" style="background:#D1FAE5;">📊</div>
+                <div>
+                    <div class="bot-name">合规数据 Bot</div>
+                    <div class="bot-role">openclaw-config/data-analyst/</div>
+                </div>
+            </div>
+            <table class="mcp-table">
+                <tbody>
+                    <tr><td style="width:120px;"><strong>SOUL.md</strong></td><td>数据驱动、客观精准；用数字说话；不编造数据</td></tr>
+                    <tr><td><strong>AGENTS.md</strong></td><td>由协调官调用；构建SQL → 执行查询 → 量化分析</td></tr>
+                    <tr><td><strong>TOOLS.md</strong></td><td>executeQuery；3个Skills</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bot-card">
+            <div class="bot-header">
+                <div class="bot-avatar" style="background:#FEE2E2;">📤</div>
+                <div>
+                    <div class="bot-name">监管披露 Bot</div>
+                    <div class="bot-role">openclaw-config/disclosure/</div>
+                </div>
+            </div>
+            <table class="mcp-table">
+                <tbody>
+                    <tr><td style="width:120px;"><strong>SOUL.md</strong></td><td>正式严谨、合规导向；公文规范措辞；逐步输出结果</td></tr>
+                    <tr><td><strong>AGENTS.md</strong></td><td>由协调官在用户确认后调用；起草→创建任务→钉钉通知</td></tr>
+                    <tr><td><strong>TOOLS.md</strong></td><td>create_disclosure, query_disclosure_status, send_card_notification；3个Skills</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- openclaw.json -->
+        <h3 class="collapsible" onclick="toggleCollapsible(this)" style="margin:20px 0 8px;">openclaw.json 主配置文件</h3>
+        <div class="collapsible-content">
+            <div class="tool-schema"><span class="comment">// TeamClaw 合规协作 Bot POC</span>
+{
+  <span class="key">"agents"</span>: {
+    <span class="key">"defaults"</span>: { <span class="key">"model"</span>: <span class="str">"anthropic/claude-sonnet-4-20250514"</span> },
+    <span class="key">"list"</span>: [
+      {
+        <span class="key">"id"</span>: <span class="str">"coordinator"</span>,
+        <span class="key">"workspace"</span>: <span class="str">"./coordinator"</span>,
+        <span class="key">"skills"</span>: [<span class="str">"workflow-orchestration"</span>, <span class="str">"task-decomposition"</span>, <span class="str">"result-synthesis"</span>, <span class="str">"human-checkpoint"</span>],
+        <span class="key">"groupChat"</span>: { <span class="key">"mentionPatterns"</span>: [<span class="str">"@合规协调官"</span>, <span class="str">"@coordinator"</span>] }
+      },
+      {
+        <span class="key">"id"</span>: <span class="str">"policy-analyst"</span>,
+        <span class="key">"workspace"</span>: <span class="str">"./policy-analyst"</span>,
+        <span class="key">"skills"</span>: [<span class="str">"incoming-doc-analysis"</span>, <span class="str">"regulation-comparison"</span>, <span class="str">"compliance-gap-analysis"</span>, <span class="str">"doc-retrieval"</span>, <span class="str">"report-generation"</span>],
+        <span class="key">"groupChat"</span>: { <span class="key">"mentionPatterns"</span>: [<span class="str">"@政策解读&报告Bot"</span>, <span class="str">"@政策解读"</span>] }
+      },
+      {
+        <span class="key">"id"</span>: <span class="str">"data-analyst"</span>,
+        <span class="key">"workspace"</span>: <span class="str">"./data-analyst"</span>,
+        <span class="key">"skills"</span>: [<span class="str">"sql-query-builder"</span>, <span class="str">"impact-quantification"</span>, <span class="str">"business-data-analysis"</span>],
+        <span class="key">"groupChat"</span>: { <span class="key">"mentionPatterns"</span>: [<span class="str">"@合规数据Bot"</span>, <span class="str">"@合规数据"</span>] }
+      },
+      {
+        <span class="key">"id"</span>: <span class="str">"disclosure"</span>,
+        <span class="key">"workspace"</span>: <span class="str">"./disclosure"</span>,
+        <span class="key">"skills"</span>: [<span class="str">"disclosure-drafting"</span>, <span class="str">"disclosure-task-creation"</span>, <span class="str">"dingtalk-card-notify"</span>],
+        <span class="key">"groupChat"</span>: { <span class="key">"mentionPatterns"</span>: [<span class="str">"@监管披露Bot"</span>, <span class="str">"@监管披露"</span>] }
+      }
+    ]
+  },
+  <span class="key">"tools"</span>: {
+    <span class="key">"agentToAgent"</span>: {
+      <span class="key">"enabled"</span>: true,
+      <span class="key">"allow"</span>: [<span class="str">"coordinator"</span>, <span class="str">"policy-analyst"</span>, <span class="str">"data-analyst"</span>, <span class="str">"disclosure"</span>]
+    }
+  },
+  <span class="key">"mcp"</span>: {
+    <span class="key">"servers"</span>: {
+      <span class="key">"incoming-doc"</span>:      { <span class="key">"command"</span>: <span class="str">"python"</span>, <span class="key">"args"</span>: [<span class="str">"mock-mcps/incoming-doc-server/server.py"</span>] },
+      <span class="key">"disclosure-system"</span>: { <span class="key">"command"</span>: <span class="str">"python"</span>, <span class="key">"args"</span>: [<span class="str">"mock-mcps/disclosure-server/server.py"</span>] },
+      <span class="key">"dingtalk-notify"</span>:   { <span class="key">"command"</span>: <span class="str">"python"</span>, <span class="key">"args"</span>: [<span class="str">"mock-mcps/dingtalk-notify-server/server.py"</span>] }
+      <span class="comment">// 已有MCP：doc-system, data-warehouse, report-generator — 取消注释并填入地址</span>
+    }
+  }
+}</div>
+        </div>
+
+        <div class="highlight-box" style="margin-top:20px;">
+            <strong>完整配置文件：</strong>所有 OpenClaw 配置文件已就绪，详见项目 <code>openclaw-config/</code> 目录。部署步骤见 <code>openclaw-config/README.md</code>。
+        </div>
+    </div>
+
 </div>
 
 <script>
