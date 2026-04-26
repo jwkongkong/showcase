@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>五一日本酒店实测对比 · 浅草 + 新宿（5晚2间房）</title>
-<meta name="description" content="2026 黄金周 5/3–5/9 东京酒店实测多平台比价：浅草、新宿、伊豆三段，含税总价、评分、距站距离一览。">
+<title>五一日本酒店 · ≤¥800/晚精选（实测 v2）</title>
+<meta name="description" content="2026 黄金周 5/3–5/9 东京酒店实测多平台比价：浅草、新宿严格筛选每间每晚 ≤ ¥800（含税）。">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   :root {
@@ -18,6 +18,9 @@
     --border: #e5e0d3;
     --gold: #c9a961;
     --green: #4a8a5c;
+    --green-light: #e6f0e8;
+    --warn: #f59e0b;
+    --warn-light: #fef3c7;
   }
   html { scroll-behavior: smooth; }
   body {
@@ -31,7 +34,6 @@
   a { color: var(--primary); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* Hero */
   .hero {
     position: relative;
     min-height: 460px;
@@ -81,13 +83,11 @@
   }
   .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
 
-  /* Container */
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-  /* Alert */
   .alert {
-    background: #fff7ed;
-    border-left: 4px solid var(--accent);
+    background: var(--warn-light);
+    border-left: 4px solid var(--warn);
     padding: 18px 22px;
     border-radius: 0 8px 8px 0;
     margin: 40px 0;
@@ -95,8 +95,17 @@
   .alert h3 { margin: 0 0 10px; color: #b45309; font-size: 17px; }
   .alert ul { margin: 0; padding-left: 22px; }
   .alert li { margin: 6px 0; color: #78350f; }
+  .alert .price-trend {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
 
-  /* Section */
   section { margin: 56px 0; }
   .section-head { margin-bottom: 28px; }
   .section-head .tag {
@@ -113,7 +122,6 @@
   }
   .section-head .desc { color: var(--text-muted); margin: 0; }
 
-  /* Hotel card grid */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -181,6 +189,8 @@
     margin-top: auto;
     padding-top: 12px;
     border-top: 1px dashed var(--border);
+  }
+  .card .price-main {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -191,6 +201,15 @@
     color: var(--primary);
   }
   .card .price-label { font-size: 12px; color: var(--text-muted); }
+  .card .per-night {
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .card .per-night.over {
+    color: var(--warn);
+  }
   .card .links { display: flex; gap: 6px; margin-top: 12px; }
   .card .links a {
     flex: 1;
@@ -210,13 +229,17 @@
   }
   .card .tag-recommend {
     display: inline-block;
-    background: #fff4dc;
-    color: #a16207;
+    background: var(--green-light);
+    color: var(--green);
     font-size: 11px;
     padding: 2px 8px;
     border-radius: 10px;
     margin-bottom: 6px;
     font-weight: 600;
+  }
+  .card .tag-recommend.gold {
+    background: #fff4dc;
+    color: #a16207;
   }
   .card.featured { border: 2px solid var(--accent); position: relative; }
   .card.featured::before {
@@ -231,8 +254,21 @@
     border-radius: 12px;
     z-index: 2;
   }
+  .card.over-budget {
+    opacity: 0.55;
+  }
+  .card.over-budget::after {
+    content: "⚠ 略超预算";
+    position: absolute;
+    top: 12px; right: 12px;
+    background: var(--warn);
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    z-index: 2;
+  }
 
-  /* Recommendation tiers */
   .tiers {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -284,7 +320,6 @@
   .tier .pick .name { font-weight: 600; font-size: 15px; }
   .tier .pick .info { font-size: 13px; color: var(--text-muted); }
 
-  /* Action card */
   .actions {
     background: linear-gradient(135deg, #fff 0%, var(--bg-alt) 100%);
     padding: 32px;
@@ -316,7 +351,6 @@
   }
   .actions strong { color: var(--primary-dark); }
 
-  /* Itinerary timeline */
   .timeline {
     border-left: 3px solid var(--accent);
     padding-left: 24px;
@@ -343,7 +377,16 @@
   .timeline .title { font-size: 16px; margin: 2px 0 4px; font-weight: 600; }
   .timeline .where { font-size: 14px; color: var(--text-muted); }
 
-  /* Footer */
+  .price-rule {
+    background: var(--green-light);
+    color: var(--green);
+    padding: 14px 22px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .price-rule strong { font-size: 16px; }
+
   footer {
     margin-top: 80px;
     padding: 40px 24px;
@@ -354,7 +397,6 @@
   }
   footer a { color: var(--primary); }
 
-  /* Mobile */
   @media (max-width: 720px) {
     .hero { padding: 60px 20px 50px; min-height: 380px; }
     .hero h1 { font-size: 30px; }
@@ -365,77 +407,113 @@
 </head>
 <body>
 
-<!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
-    <span class="eyebrow">2026 GOLDEN WEEK · 5/3 – 5/10</span>
-    <h1>五一日本酒店实测对比<br>浅草 · 新宿 · 5 晚 2 间房</h1>
-    <p class="sub">黄金周已经严重缺货，3 平台实测真实含税总价 · 中文路线衔接 · 老人友好</p>
+    <span class="eyebrow">2026 GOLDEN WEEK · UPDATED v2</span>
+    <h1>五一日本酒店精选<br>每间每晚 ≤ ¥800（含税）</h1>
+    <p class="sub">实测涨价后重新筛选 · 浅草 + 新宿 · 5 晚 2 间房</p>
     <div class="meta">
       <span>📅 5/3 – 5/10</span>
       <span>👥 3 人（夫妻 + 岳父）</span>
-      <span>🏨 2 间房（双人 + 单人）</span>
-      <span>🛒 实测自 Trip.com / 携程</span>
+      <span>🏨 2 间房</span>
+      <span>💰 ≤ ¥800/晚/间</span>
     </div>
   </div>
 </header>
 
 <div class="wrap">
 
-<!-- ALERT -->
 <div class="alert">
-  <h3>⚠️ 三个关键发现（开始订房前必读）</h3>
+  <h3>📈 价格已经在涨（v2 更新）</h3>
   <ul>
-    <li><strong>东横INN 浅草藏前2 在 5/3-5/5 已订满</strong>——原计划落空，需用备选</li>
-    <li><strong>Resol Poshtel 浅草是胶囊酒店</strong>（不是商务酒店！显示"男生胶囊房 ¥410"）</li>
-    <li>核心区 500 元/间是不可能的——经济档实际 ≈ 1,200–1,400 元/晚（2 间合计）</li>
+    <li>東武浅草站北 Trend 酒店：从 ¥2,456 → <strong>¥4,007</strong> <span class="price-trend">+63%</span> 已超预算</li>
+    <li>京阪浅草酒店：从 ¥3,125 → ¥3,144（小涨）✅ 仍合格</li>
+    <li>Trip.com 早期实测的最便宜 6 家中 <strong>已有 4 家超预算</strong>，今晚不订明天可能更贵</li>
+    <li>预算口径：每间房每晚 ≤ ¥800 含税 → 浅草 2 晚 2 间总额 ≤ ¥3,200，新宿 3 晚 2 间总额 ≤ ¥4,800</li>
   </ul>
+</div>
+
+<div class="price-rule">
+  <strong>💰 筛选规则</strong>：每间房每晚含税单价 ≤ ¥800（绿色"达标"标识）。略超预算（¥800–870）酒店变灰显示作参考，可作为升级备选。
 </div>
 
 <!-- 浅草段 -->
 <section>
   <div class="section-head">
     <span class="tag">SEGMENT 1</span>
-    <h2>5/3 – 5/4 · 浅草 / 藏前段（2 晚）</h2>
-    <p class="desc">9 家 4.5+ 含税总价排序 · 5/3 晚酒酒井奥莱回浅草、5/4 早 JR 镰仓、5/5 早新干线伊豆，藏前站位置最顺</p>
+    <h2>5/3 – 5/4 · 浅草 / 藏前段（2 晚 2 间 · 总额 ≤ ¥3,200）</h2>
+    <p class="desc">实测自 Trip.com 5/3-5/5 含税排序 · 共 4 家完全达标 + 3 家边缘可选</p>
   </div>
 
   <div class="grid">
 
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=600&q=70')">
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=600&q=70')">
         <span class="rank-badge">#1</span>
-        <span class="star-badge">⭐ 9.0/10</span>
+        <span class="star-badge">⭐ 9.1/10</span>
       </div>
       <div class="body">
-        <span class="tag-recommend">最便宜</span>
-        <h4>東武浅草站北 Trend 酒店</h4>
-        <p class="en">Hotel Trend Tobu Asakusa-Eki Kita</p>
-        <div class="meta-row">📍 浅草站步行 4 分钟（460m）</div>
-        <div class="meta-row">🛏️ 单人禁烟 + 双人禁烟</div>
+        <span class="tag-recommend">最便宜 · 蔵前站新店</span>
+        <h4>Nesthotel 蔵前站</h4>
+        <p class="en">Nesthotel alt. Kuramae Station</p>
+        <div class="meta-row">📍 蔵前站 1 分钟 · 大江户线 + 都营浅草线</div>
+        <div class="meta-row">🛏️ 禁烟单人房 · 198 条评价</div>
         <div class="price-row">
-          <div><div class="price">¥2,456</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+          <div class="price-main">
+            <div><div class="price">¥2,951</div><div class="price-label">2 间 × 2 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:13px;color:var(--text-muted);text-decoration:line-through">¥897</div><div style="font-size:11px;color:var(--green)">特惠 -23%</div></div>
+          </div>
+          <div class="per-night">≈ ¥671 / 间 / 晚 ✓ 达标</div>
         </div>
         <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Hotel+Trend+Tobu+Asakusa+Eki+Kita&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Trend+Tobu+Asakusa&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+          <a href="https://hk.trip.com/hotels/list?searchWord=Nesthotel+Kuramae&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Nesthotel+Kuramae&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#2</span>
+        <span class="star-badge">⭐ 8.9/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">荷里活双床房 · 360m</span>
+        <h4>HOTEL TAVINOS 浅草</h4>
+        <p class="en">HOTEL TAVINOS Asakusa</p>
+        <div class="meta-row">📍 浅草站步行 4 分钟（360m）</div>
+        <div class="meta-row">🛏️ 1,741 条评价 · 购物方便</div>
+        <div class="price-row">
+          <div class="price-main">
+            <div><div class="price">¥3,085</div><div class="price-label">2 间 × 2 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:13px;color:var(--text-muted);text-decoration:line-through">¥758</div><div style="font-size:11px;color:var(--green)">特惠 -8%</div></div>
+          </div>
+          <div class="per-night">≈ ¥693 / 间 / 晚 ✓ 达标</div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=HOTEL+TAVINOS+Asakusa&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=TAVINOS+Asakusa&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
         </div>
       </div>
     </div>
 
     <div class="card featured">
       <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1578469645742-46cae010e5d4?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#4</span>
+        <span class="rank-badge">#3</span>
         <span class="star-badge">⭐ 9.0/10</span>
       </div>
       <div class="body">
-        <span class="tag-recommend">早餐一流</span>
+        <span class="tag-recommend">早餐一流 · 经典选择</span>
         <h4>京阪浅草酒店</h4>
         <p class="en">Hotel Keihan Asakusa</p>
         <div class="meta-row">📍 浅草站步行 5 分钟（420m）</div>
-        <div class="meta-row">🛏️ 821 条评价 · 老人友好</div>
+        <div class="meta-row">🛏️ 单人房 · 822 条评价</div>
         <div class="price-row">
-          <div><div class="price">¥3,125</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+          <div class="price-main">
+            <div><div class="price">¥3,144</div><div class="price-label">2 间 × 2 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:11px;color:var(--text-muted)">仅剩 1 间</div></div>
+          </div>
+          <div class="per-night">≈ ¥714 / 间 / 晚 ✓ 达标</div>
         </div>
         <div class="links">
           <a href="https://hk.trip.com/hotels/list?searchWord=Hotel+Keihan+Asakusa&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
@@ -445,39 +523,22 @@
     </div>
 
     <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#3</span>
-        <span class="star-badge">⭐ 9.1/10</span>
-      </div>
-      <div class="body">
-        <span class="tag-recommend">蔵前站新店</span>
-        <h4>Nesthotel 蔵前站</h4>
-        <p class="en">Nesthotel alt. Kuramae Station</p>
-        <div class="meta-row">📍 蔵前站 1 分钟</div>
-        <div class="meta-row">🛏️ 大江户线 + 都营浅草线</div>
-        <div class="price-row">
-          <div><div class="price">¥3,092</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
-        </div>
-        <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Nesthotel+Kuramae&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Nesthotel+Kuramae&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
       <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1519999482648-25049ddd37b1?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#5</span>
+        <span class="rank-badge">#4</span>
         <span class="star-badge">⭐ 8.8/10</span>
       </div>
       <div class="body">
-        <span class="tag-recommend">早餐一流</span>
+        <span class="tag-recommend">早餐一流 · 双人床房</span>
         <h4>Vessel Inn 浅草筑波快线</h4>
         <p class="en">Vessel Inn Asakusa Tsukuba Express</p>
         <div class="meta-row">📍 浅草站步行 5 分钟（500m）</div>
-        <div class="meta-row">🛏️ 双人床房 · 前台热情</div>
+        <div class="meta-row">🛏️ 禁烟舒适双人床 · 888 条评价</div>
         <div class="price-row">
-          <div><div class="price">¥3,179</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+          <div class="price-main">
+            <div><div class="price">¥3,176</div><div class="price-label">2 间 × 2 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:11px;color:var(--text-muted)">仅剩 1 间</div></div>
+          </div>
+          <div class="per-night">≈ ¥722 / 间 / 晚 ✓ 达标</div>
         </div>
         <div class="links">
           <a href="https://hk.trip.com/hotels/list?searchWord=Vessel+Inn+Asakusa&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
@@ -486,44 +547,50 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card over-budget">
       <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#6</span>
-        <span class="star-badge">⭐ 9.2/10</span>
+        <span class="rank-badge">#5</span>
       </div>
       <div class="body">
-        <span class="tag-recommend">评分最高</span>
-        <h4>浅草中央酒店</h4>
-        <p class="en">Asakusa Central Hotel</p>
-        <div class="meta-row">📍 浅草站步行 8 分钟（740m）</div>
-        <div class="meta-row">🛏️ 干净卫生 · 交通便利</div>
+        <h4>阿諾酒店</h4>
+        <p class="en">Ano Hotel Asakusa · 8.8/10 · 1.5km</p>
         <div class="price-row">
-          <div><div class="price">¥3,225</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
-        </div>
-        <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Asakusa+Central+Hotel&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Asakusa+Central&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+          <div class="price-main">
+            <div><div class="price">¥3,204</div><div class="price-label">2 间 × 2 晚 含税</div></div>
+          </div>
+          <div class="per-night over">≈ ¥728 / 间 / 晚 · 略超 ¥4</div>
         </div>
       </div>
     </div>
 
-    <div class="card featured">
+    <div class="card over-budget">
       <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1551918120-9739cb430c6d?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#7</span>
-        <span class="star-badge">⭐ 8.9/10</span>
+        <span class="rank-badge">#6</span>
       </div>
       <div class="body">
-        <span class="tag-recommend">含早 + 最近站</span>
-        <h4>Super Hotel 浅草</h4>
-        <p class="en">Super Hotel Asakusa</p>
-        <div class="meta-row">📍 浅草站步行 3 分钟（300m）</div>
-        <div class="meta-row">🛏️ 标准双人房带浴室 · 含早餐</div>
+        <h4>浅草中央酒店</h4>
+        <p class="en">Asakusa Central Hotel · 9.2/10 · 740m</p>
         <div class="price-row">
-          <div><div class="price">¥3,309</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+          <div class="price-main">
+            <div><div class="price">¥3,225</div><div class="price-label">2 间 × 2 晚 含税</div></div>
+          </div>
+          <div class="per-night over">≈ ¥733 / 间 / 晚 · 略超 ¥25</div>
         </div>
-        <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Super+Hotel+Asakusa&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Super+Hotel+Asakusa&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+      </div>
+    </div>
+
+    <div class="card over-budget">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1517840901100-8179e982acb7?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#7</span>
+      </div>
+      <div class="body">
+        <h4>Super Hotel 浅草（含早餐）</h4>
+        <p class="en">Super Hotel Asakusa · 8.9/10 · 300m 最近站</p>
+        <div class="price-row">
+          <div class="price-main">
+            <div><div class="price">¥3,301</div><div class="price-label">2 间 × 2 晚 含税</div></div>
+          </div>
+          <div class="per-night over">≈ ¥750 / 间 / 晚 · 略超 ¥101</div>
         </div>
       </div>
     </div>
@@ -535,107 +602,53 @@
 <section>
   <div class="section-head">
     <span class="tag">SEGMENT 2</span>
-    <h2>5/7 – 5/9 · 新宿段（3 晚）</h2>
-    <p class="desc">86 家筛选后 · 优先 BUSTA 巴士总站附近 · 5/7 河口湖、5/8 木更津、5/10 N'EX 成田都从这里发车</p>
+    <h2>5/7 – 5/9 · 新宿段（3 晚 2 间 · 总额 ≤ ¥4,800）</h2>
+    <p class="desc">实测自 Trip.com 含税排序 · 共 6 家完全达标 + 1 家边缘 · 优先 BUSTA 巴士总站附近</p>
   </div>
 
   <div class="grid">
 
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#1</span>
-        <span class="star-badge">⭐ 8.3/10</span>
-      </div>
-      <div class="body">
-        <span class="tag-recommend">最便宜</span>
-        <h4>东京商务酒店</h4>
-        <p class="en">Tokyo Business Hotel</p>
-        <div class="meta-row">📍 新宿步行 1.3km</div>
-        <div class="meta-row">🛏️ 禁烟单人房 · 90 条评价（少）</div>
-        <div class="price-row">
-          <div><div class="price">¥2,571</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
-        </div>
-        <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Tokyo+Business+Hotel+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Tokyo+Business+Hotel&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#3</span>
-        <span class="star-badge">⭐ 8.6/10</span>
-      </div>
-      <div class="body">
-        <h4>花火旅馆</h4>
-        <p class="en">Hanabi Hotel</p>
-        <div class="meta-row">📍 新宿步行 1.8km</div>
-        <div class="meta-row">🛏️ 日式单人房 · 性价比高</div>
-        <div class="price-row">
-          <div><div class="price">¥3,181</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
-        </div>
-        <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Hanabi+Hotel+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Hanabi+Hotel&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1549638441-b787d2e11f14?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#6</span>
-        <span class="star-badge">⭐ 8.1/10</span>
-      </div>
-      <div class="body">
-        <h4>新宿 Listel 酒店</h4>
-        <p class="en">Hotel Listel Shinjuku</p>
-        <div class="meta-row">📍 新宿步行 1.4km</div>
-        <div class="meta-row">🛏️ 禁烟单人房 · 体验一流</div>
-        <div class="price-row">
-          <div><div class="price">¥3,744</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
-        </div>
-        <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Hotel+Listel+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Hotel+Listel+Shinjuku&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
-        </div>
-      </div>
-    </div>
-
     <div class="card featured">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#7</span>
-        <span class="star-badge">⭐ 8.5/10</span>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#1</span>
+        <span class="star-badge">⭐ 8.9/10</span>
       </div>
       <div class="body">
-        <span class="tag-recommend">老牌可靠 · 6019 条评价</span>
-        <h4>新宿华盛顿酒店</h4>
-        <p class="en">Shinjuku Washington Hotel</p>
-        <div class="meta-row">📍 新宿步行 800m · 近 BUSTA</div>
-        <div class="meta-row">🛏️ 禁烟单人房 · 6019 条评价</div>
+        <span class="tag-recommend">最便宜 · 相铁连锁</span>
+        <h4>相铁 Fresa Inn 东新宿站前</h4>
+        <p class="en">Sotetsu Fresa Inn Higashi Shinjuku</p>
+        <div class="meta-row">📍 东新宿站附近 · 步行 1.4km 到新宿主站</div>
+        <div class="meta-row">🛏️ 单人房 · 796 条评价 · "近地铁站"</div>
         <div class="price-row">
-          <div><div class="price">¥3,759</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+          <div class="price-main">
+            <div><div class="price">¥3,718</div><div class="price-label">2 间 × 3 晚 含税</div></div>
+          </div>
+          <div class="per-night">≈ ¥620 / 间 / 晚 ✓ 达标</div>
         </div>
         <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=Shinjuku+Washington+Hotel&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Shinjuku+Washington&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+          <a href="https://hk.trip.com/hotels/list?searchWord=Sotetsu+Fresa+Inn+Higashi+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Sotetsu+Fresa+Inn+Higashi+Shinjuku&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
         </div>
       </div>
     </div>
 
     <div class="card featured">
       <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=70')">
-        <span class="rank-badge">#9</span>
+        <span class="rank-badge">#2</span>
         <span class="star-badge">⭐ 8.6/10</span>
       </div>
       <div class="body">
-        <span class="tag-recommend">京王集团 · 早餐一流</span>
+        <span class="tag-recommend gold">京王集团 · 早餐一流</span>
         <h4>新宿京王布莱索酒店</h4>
         <p class="en">Keio Presso Inn Shinjuku</p>
-        <div class="meta-row">📍 新宿步行 850m · 近 BUSTA</div>
-        <div class="meta-row">🛏️ 新装修禁烟大床房</div>
+        <div class="meta-row">📍 新宿站步行 850m · 近 BUSTA 巴士总站</div>
+        <div class="meta-row">🛏️ 新装修禁烟大床房 · 715 条评价</div>
         <div class="price-row">
-          <div><div class="price">¥3,845</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+          <div class="price-main">
+            <div><div class="price">¥3,855</div><div class="price-label">2 间 × 3 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:13px;color:var(--text-muted);text-decoration:line-through">¥619</div><div style="font-size:11px;color:var(--green)">特惠 -5%</div></div>
+          </div>
+          <div class="per-night">≈ ¥643 / 间 / 晚 ✓ 达标</div>
         </div>
         <div class="links">
           <a href="https://hk.trip.com/hotels/list?searchWord=Keio+Presso+Inn+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
@@ -644,22 +657,117 @@
       </div>
     </div>
 
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#3</span>
+        <span class="star-badge">⭐ 8.8/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">早餐一流 · 性价比</span>
+        <h4>新宿普乐美雅凯宾</h4>
+        <p class="en">Premier Hotel Cabin Shinjuku</p>
+        <div class="meta-row">📍 新宿站步行 1km</div>
+        <div class="meta-row">🛏️ 小型双人房 · 935 条评价</div>
+        <div class="price-row">
+          <div class="price-main">
+            <div><div class="price">¥4,062</div><div class="price-label">2 间 × 3 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:11px;color:var(--text-muted)">仅剩 2 间</div></div>
+          </div>
+          <div class="per-night">≈ ¥677 / 间 / 晚 ✓ 达标</div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Premier+Hotel+Cabin+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Premier+Hotel+Cabin+Shinjuku&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#4</span>
+        <span class="star-badge">⭐ 8.5/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend gold">老牌可靠 · 6,025 条评价</span>
+        <h4>新宿华盛顿酒店</h4>
+        <p class="en">Shinjuku Washington Hotel</p>
+        <div class="meta-row">📍 新宿站步行 800m · 近 BUSTA</div>
+        <div class="meta-row">🛏️ 禁烟女士单人房 · 经典老牌</div>
+        <div class="price-row">
+          <div class="price-main">
+            <div><div class="price">¥4,078</div><div class="price-label">2 间 × 3 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:11px;color:var(--text-muted)">仅剩 1 间</div></div>
+          </div>
+          <div class="per-night">≈ ¥680 / 间 / 晚 ✓ 达标</div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Shinjuku+Washington+Hotel&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Shinjuku+Washington&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=600&q=70')">
         <span class="rank-badge">#5</span>
-        <span class="star-badge">⭐ 7.9/10</span>
+        <span class="star-badge">⭐ 8.4/10</span>
       </div>
       <div class="body">
-        <h4>LiVEMAX 新宿东</h4>
-        <p class="en">HOTEL LiVEMAX Shinjuku East</p>
-        <div class="meta-row">📍 新宿步行 1.5km</div>
-        <div class="meta-row">🛏️ 单床房禁烟 · 402 条评价</div>
+        <span class="tag-recommend">2025 翻新</span>
+        <h4>东京东新宿 E 酒店</h4>
+        <p class="en">E Hotel Higashi Shinjuku</p>
+        <div class="meta-row">📍 新宿站步行 1.3km</div>
+        <div class="meta-row">🛏️ 禁烟双人床房 · 1,067 条评价</div>
         <div class="price-row">
-          <div><div class="price">¥3,715</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+          <div class="price-main">
+            <div><div class="price">¥4,366</div><div class="price-label">2 间 × 3 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:13px;color:var(--text-muted);text-decoration:line-through">¥723</div><div style="font-size:11px;color:var(--green)">特惠 -8%</div></div>
+          </div>
+          <div class="per-night">≈ ¥728 / 间 / 晚 ✓ 达标</div>
         </div>
         <div class="links">
-          <a href="https://hk.trip.com/hotels/list?searchWord=LiVEMAX+Shinjuku+East&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
-          <a href="https://hotels.ctrip.com/hotels/list?searchWord=LiVEMAX+Shinjuku+East&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+          <a href="https://hk.trip.com/hotels/list?searchWord=E+Hotel+Higashi+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=E+Hotel+Higashi+Shinjuku&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1549638441-b787d2e11f14?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#6</span>
+        <span class="star-badge">⭐ 8.8/10</span>
+      </div>
+      <div class="body">
+        <h4>新宿西铁 Inn 酒店</h4>
+        <p class="en">Nishitetsu Inn Shinjuku</p>
+        <div class="meta-row">📍 新宿站步行 1.1km · "近地铁站"</div>
+        <div class="meta-row">🛏️ 禁烟单人房 13.6㎡ · 367 条评价</div>
+        <div class="price-row">
+          <div class="price-main">
+            <div><div class="price">¥4,504</div><div class="price-label">2 间 × 3 晚 含税</div></div>
+            <div style="text-align:right"><div style="font-size:13px;color:var(--text-muted);text-decoration:line-through">¥715</div><div style="font-size:11px;color:var(--green)">特惠 -¥33</div></div>
+          </div>
+          <div class="per-night">≈ ¥751 / 间 / 晚 ✓ 达标</div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Nishitetsu+Inn+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Nishitetsu+Inn+Shinjuku&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card over-budget">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#7</span>
+      </div>
+      <div class="body">
+        <h4>新宿华盛顿附楼</h4>
+        <p class="en">Shinjuku Washington Hotel Annex · 8.7/10 · 830m</p>
+        <div class="price-row">
+          <div class="price-main">
+            <div><div class="price">¥4,806</div><div class="price-label">2 间 × 3 晚 含税</div></div>
+          </div>
+          <div class="per-night over">≈ ¥801 / 间 / 晚 · 仅超 ¥1</div>
         </div>
       </div>
     </div>
@@ -671,55 +779,55 @@
 <section>
   <div class="section-head">
     <span class="tag">FINAL PICKS</span>
-    <h2>3 档预订组合</h2>
+    <h2>3 档预订组合（≤ ¥800/晚 严格筛选）</h2>
     <p class="desc">5 晚酒店总价已包含全部税费，按家人舒适度递增</p>
   </div>
 
   <div class="tiers">
 
     <div class="tier">
-      <h3>🥉 经济档</h3>
-      <div class="total">¥5,650 – 6,200<small> / 5 晚</small></div>
+      <h3>🥉 极限省钱</h3>
+      <div class="total">¥6,669<small> / 5 晚</small></div>
       <div class="pick">
         <div class="seg">5/3 – 5/4 浅草</div>
-        <div class="name">東武浅草站北 Trend</div>
-        <div class="info">¥2,456（2 间 × 2 晚）</div>
+        <div class="name">Nesthotel 蔵前站</div>
+        <div class="info">¥2,951 · ¥671/晚 · 蔵前站新店</div>
       </div>
       <div class="pick">
         <div class="seg">5/7 – 5/9 新宿</div>
-        <div class="name">花火旅馆 / Listel 新宿</div>
-        <div class="info">¥3,200 – 3,750（2 间 × 3 晚）</div>
+        <div class="name">相铁 Fresa Inn 东新宿</div>
+        <div class="info">¥3,718 · ¥620/晚 · 8.9 分</div>
       </div>
     </div>
 
     <div class="tier gold">
       <span class="ribbon">★ 强推</span>
       <h3>🥇 中端最佳性价比</h3>
-      <div class="total">¥6,970<small> / 5 晚</small></div>
+      <div class="total">¥6,999<small> / 5 晚</small></div>
       <div class="pick">
         <div class="seg">5/3 – 5/4 浅草</div>
         <div class="name">京阪浅草酒店</div>
-        <div class="info">¥3,125 · 9.0 分 · 早餐一流</div>
+        <div class="info">¥3,144 · ¥714/晚 · 9.0 · 早餐一流</div>
       </div>
       <div class="pick">
         <div class="seg">5/7 – 5/9 新宿</div>
         <div class="name">京王布莱索新宿</div>
-        <div class="info">¥3,845 · 8.6 分 · 近 BUSTA</div>
+        <div class="info">¥3,855 · ¥643/晚 · 近 BUSTA</div>
       </div>
     </div>
 
     <div class="tier">
-      <h3>🏆 升级款（家人优先）</h3>
-      <div class="total">¥6,850<small> / 5 晚</small></div>
+      <h3>🏆 评论最多老牌</h3>
+      <div class="total">¥7,156<small> / 5 晚</small></div>
       <div class="pick">
         <div class="seg">5/3 – 5/4 浅草</div>
-        <div class="name">Nesthotel 蔵前站</div>
-        <div class="info">¥3,092 · 蔵前新店 · 9.1 分</div>
+        <div class="name">HOTEL TAVINOS 浅草</div>
+        <div class="info">¥3,085 · ¥693/晚 · 1,741 条评价</div>
       </div>
       <div class="pick">
         <div class="seg">5/7 – 5/9 新宿</div>
         <div class="name">新宿华盛顿酒店</div>
-        <div class="info">¥3,759 · 6,019 条评价 · 老牌</div>
+        <div class="info">¥4,078 · ¥680/晚 · 6,025 条评价</div>
       </div>
     </div>
 
@@ -788,11 +896,11 @@
 
   <div class="actions">
     <ol>
-      <li><strong>先订双人房（您和妻子）</strong>：黄金周双人房稀缺，先锁定再考虑父亲单人房。同酒店两间同时下单，万一一种没库存就分别订。</li>
-      <li><strong>携程 vs Trip.com 二选一</strong>：实测同一房型价格差 &lt; 2%。携程国内站界面更快、中文客服；Trip.com 偶有 App 端 5% 额外折扣。</li>
-      <li><strong>必须勾选"免费取消"</strong>：5/1 之前都还能改。锁定房型后随时可比价升级。</li>
-      <li><strong>注意 Twin（双床）vs Double（大床）</strong>：日本商务酒店 Twin 房稀缺。您和妻子若一定要双床，订房时务必筛选"双床房 / 2张床 / Twin"。</li>
-      <li><strong>住宿税不要忘记</strong>：东京住宿税 ¥100–200/人/晚（在酒店现付，不计入网上含税总价）。</li>
+      <li><strong>立即订京阪浅草 + 京王布莱索新宿</strong>（强推组合）：今天还能订到 ¥714 + ¥643/晚的好价，明天可能再涨。</li>
+      <li><strong>选"免费取消"</strong>：5/1 之前都还能改，订了再慢慢比价。</li>
+      <li><strong>注意"仅剩 X 间"标签</strong>：京阪浅草、华盛顿都已经"仅剩 1 间"，犹豫一晚就没。</li>
+      <li><strong>Twin 双床 vs Double 大床</strong>：日本 Twin 房稀缺，您和妻子如果一定要双床，订房时务必筛 "2 张床 / Twin"。</li>
+      <li><strong>住宿税现付</strong>：东京 ¥100–200 /人/晚（不计入网上含税总价）。</li>
     </ol>
   </div>
 </section>
@@ -800,8 +908,8 @@
 </div>
 
 <footer>
-  <p>实测于 2026-04-26 · Trip.com（携程国际版）+ 携程国内站<br>
-  数据为 5/3 前 7 天实时报价快照，价格随时可能变动。返回 <a href="../">Showcase 主页</a></p>
+  <p><strong>v2 · 数据更新于 2026-04-26</strong> · 实测自 Trip.com（携程国际版）+ 携程国内站<br>
+  ⚠️ 价格在动态变化，本页是 7 天前快照。返回 <a href="../">Showcase 主页</a></p>
 </footer>
 
 </body>
