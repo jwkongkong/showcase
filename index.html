@@ -15,7 +15,9 @@
     --accent: #818cf8;
     --accent-glow: rgba(129, 140, 248, 0.15);
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
       "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -23,6 +25,7 @@
     color: var(--text);
     min-height: 100vh;
   }
+
   .header {
     text-align: center;
     padding: 60px 24px 40px;
@@ -50,11 +53,13 @@
     color: var(--text-muted);
     margin-top: 12px;
   }
+
   .container {
     max-width: 720px;
     margin: 0 auto;
     padding: 0 24px 60px;
   }
+
   .card {
     display: flex;
     align-items: center;
@@ -101,11 +106,13 @@
     transform: translateX(4px);
     color: var(--accent);
   }
+
   .empty-state {
     text-align: center;
     padding: 60px 24px;
     color: var(--text-muted);
   }
+
   footer {
     text-align: center;
     padding: 24px;
@@ -113,6 +120,7 @@
     font-size: 0.75rem;
     opacity: 0.5;
   }
+
   @media (max-width: 640px) {
     .header { padding: 40px 16px 24px; }
     .header h1 { font-size: 1.8rem; }
@@ -121,13 +129,23 @@
 </style>
 </head>
 <body>
+
 <div class="header">
   <h1>Showcase</h1>
   <p>My collection of shared pages</p>
-  <span class="count">6 pages</span>
+  <span class="count">7 pages</span>
 </div>
+
 <div class="container">
 
+      <a href="japan-may-day-hotels/" class="card">
+        <div class="card-body">
+          <h2 class="card-title">五一日本酒店实测对比 · 浅草 + 新宿（5晚2间房）</h2>
+          <p class="card-desc">2026 黄金周 5/3–5/9 东京酒店实测多平台比价：浅草、新宿、伊豆三段，含税总价、评分、距站距离一览。</p>
+          <span class="card-date">2026-04-26</span>
+        </div>
+        <div class="card-arrow">&#8594;</div>
+      </a>
       <a href="teamclaw-compliance-poc/" class="card">
         <div class="card-body">
           <h2 class="card-title">合规协作 Bot POC 设计方案 v2</h2>
@@ -177,8 +195,10 @@
         <div class="card-arrow">&#8594;</div>
       </a>
 </div>
+
 <footer>
-  Powered by GitHub Pages &middot; Last updated 2026-04-07
+  Powered by GitHub Pages &middot; Last updated 2026-04-26
 </footer>
+
 </body>
 </html>

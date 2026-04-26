@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五一日本酒店实测对比 · 浅草 + 新宿（5晚2间房）</title>
+<meta name="description" content="2026 黄金周 5/3–5/9 东京酒店实测多平台比价：浅草、新宿、伊豆三段，含税总价、评分、距站距离一览。">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --primary: #d4391f;
+    --primary-dark: #a82d18;
+    --accent: #e8b04a;
+    --bg: #fafaf7;
+    --bg-alt: #f3efe6;
+    --text: #1a1a1a;
+    --text-muted: #5a5a5a;
+    --border: #e5e0d3;
+    --gold: #c9a961;
+    --green: #4a8a5c;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 460px;
+    background:
+      linear-gradient(135deg, rgba(212,57,31,0.85) 0%, rgba(168,45,24,0.7) 100%),
+      url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1600&q=80') center/cover;
+    color: #fff;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 3px;
+    background: rgba(255,255,255,0.18);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 42px;
+    line-height: 1.25;
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+  .hero .sub {
+    font-size: 18px;
+    opacity: 0.92;
+    margin: 0 0 24px;
+  }
+  .hero .meta {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 14px;
+    opacity: 0.85;
+    justify-content: center;
+  }
+  .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+  /* Container */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Alert */
+  .alert {
+    background: #fff7ed;
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 0 8px 8px 0;
+    margin: 40px 0;
+  }
+  .alert h3 { margin: 0 0 10px; color: #b45309; font-size: 17px; }
+  .alert ul { margin: 0; padding-left: 22px; }
+  .alert li { margin: 6px 0; color: #78350f; }
+
+  /* Section */
+  section { margin: 56px 0; }
+  .section-head { margin-bottom: 28px; }
+  .section-head .tag {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--primary);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .section-head h2 {
+    font-size: 30px;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+  .section-head .desc { color: var(--text-muted); margin: 0; }
+
+  /* Hotel card grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+  .card .thumb {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .card .rank-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .card .star-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    backdrop-filter: blur(6px);
+  }
+  .card .body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
+  .card h4 {
+    font-size: 17px;
+    margin: 0 0 4px;
+    line-height: 1.35;
+  }
+  .card .en {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0 0 12px;
+  }
+  .card .meta-row {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card .price-row {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .card .price {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .card .price-label { font-size: 12px; color: var(--text-muted); }
+  .card .links { display: flex; gap: 6px; margin-top: 12px; }
+  .card .links a {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    padding: 7px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: all .15s;
+  }
+  .card .links a:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    text-decoration: none;
+  }
+  .card .tag-recommend {
+    display: inline-block;
+    background: #fff4dc;
+    color: #a16207;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .card.featured { border: 2px solid var(--accent); position: relative; }
+  .card.featured::before {
+    content: "★ 强推";
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    z-index: 2;
+  }
+
+  /* Recommendation tiers */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .tier {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid var(--border);
+  }
+  .tier.gold {
+    background: linear-gradient(135deg, #fff8e7 0%, #fff 100%);
+    border: 2px solid var(--accent);
+    position: relative;
+  }
+  .tier .ribbon {
+    position: absolute;
+    top: -10px; left: 20px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .tier h3 {
+    font-size: 20px;
+    margin: 0 0 6px;
+  }
+  .tier .total {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 6px 0 16px;
+  }
+  .tier .total small { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+  .tier .pick {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .tier .pick:last-child { border-bottom: none; }
+  .tier .pick .seg {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 2px;
+  }
+  .tier .pick .name { font-weight: 600; font-size: 15px; }
+  .tier .pick .info { font-size: 13px; color: var(--text-muted); }
+
+  /* Action card */
+  .actions {
+    background: linear-gradient(135deg, #fff 0%, var(--bg-alt) 100%);
+    padding: 32px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+  }
+  .actions ol {
+    counter-reset: a;
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .actions ol li {
+    counter-increment: a;
+    padding: 14px 0 14px 50px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+  }
+  .actions ol li:last-child { border-bottom: none; }
+  .actions ol li::before {
+    content: counter(a);
+    position: absolute;
+    left: 0; top: 12px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+  }
+  .actions strong { color: var(--primary-dark); }
+
+  /* Itinerary timeline */
+  .timeline {
+    border-left: 3px solid var(--accent);
+    padding-left: 24px;
+    margin: 24px 0;
+  }
+  .timeline-item {
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -33px; top: 6px;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 3px solid var(--bg);
+  }
+  .timeline .date {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 14px;
+  }
+  .timeline .title { font-size: 16px; margin: 2px 0 4px; font-weight: 600; }
+  .timeline .where { font-size: 14px; color: var(--text-muted); }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding: 40px 24px;
+    text-align: center;
+    background: var(--bg-alt);
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  footer a { color: var(--primary); }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    .hero { padding: 60px 20px 50px; min-height: 380px; }
+    .hero h1 { font-size: 30px; }
+    .hero .sub { font-size: 16px; }
+    .section-head h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">2026 GOLDEN WEEK · 5/3 – 5/10</span>
+    <h1>五一日本酒店实测对比<br>浅草 · 新宿 · 5 晚 2 间房</h1>
+    <p class="sub">黄金周已经严重缺货，3 平台实测真实含税总价 · 中文路线衔接 · 老人友好</p>
+    <div class="meta">
+      <span>📅 5/3 – 5/10</span>
+      <span>👥 3 人（夫妻 + 岳父）</span>
+      <span>🏨 2 间房（双人 + 单人）</span>
+      <span>🛒 实测自 Trip.com / 携程</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ALERT -->
+<div class="alert">
+  <h3>⚠️ 三个关键发现（开始订房前必读）</h3>
+  <ul>
+    <li><strong>东横INN 浅草藏前2 在 5/3-5/5 已订满</strong>——原计划落空，需用备选</li>
+    <li><strong>Resol Poshtel 浅草是胶囊酒店</strong>（不是商务酒店！显示"男生胶囊房 ¥410"）</li>
+    <li>核心区 500 元/间是不可能的——经济档实际 ≈ 1,200–1,400 元/晚（2 间合计）</li>
+  </ul>
+</div>
+
+<!-- 浅草段 -->
+<section>
+  <div class="section-head">
+    <span class="tag">SEGMENT 1</span>
+    <h2>5/3 – 5/4 · 浅草 / 藏前段（2 晚）</h2>
+    <p class="desc">9 家 4.5+ 含税总价排序 · 5/3 晚酒酒井奥莱回浅草、5/4 早 JR 镰仓、5/5 早新干线伊豆，藏前站位置最顺</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#1</span>
+        <span class="star-badge">⭐ 9.0/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">最便宜</span>
+        <h4>東武浅草站北 Trend 酒店</h4>
+        <p class="en">Hotel Trend Tobu Asakusa-Eki Kita</p>
+        <div class="meta-row">📍 浅草站步行 4 分钟（460m）</div>
+        <div class="meta-row">🛏️ 单人禁烟 + 双人禁烟</div>
+        <div class="price-row">
+          <div><div class="price">¥2,456</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Hotel+Trend+Tobu+Asakusa+Eki+Kita&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Trend+Tobu+Asakusa&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1578469645742-46cae010e5d4?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#4</span>
+        <span class="star-badge">⭐ 9.0/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">早餐一流</span>
+        <h4>京阪浅草酒店</h4>
+        <p class="en">Hotel Keihan Asakusa</p>
+        <div class="meta-row">📍 浅草站步行 5 分钟（420m）</div>
+        <div class="meta-row">🛏️ 821 条评价 · 老人友好</div>
+        <div class="price-row">
+          <div><div class="price">¥3,125</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Hotel+Keihan+Asakusa&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Keihan+Asakusa&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#3</span>
+        <span class="star-badge">⭐ 9.1/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">蔵前站新店</span>
+        <h4>Nesthotel 蔵前站</h4>
+        <p class="en">Nesthotel alt. Kuramae Station</p>
+        <div class="meta-row">📍 蔵前站 1 分钟</div>
+        <div class="meta-row">🛏️ 大江户线 + 都营浅草线</div>
+        <div class="price-row">
+          <div><div class="price">¥3,092</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Nesthotel+Kuramae&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Nesthotel+Kuramae&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1519999482648-25049ddd37b1?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#5</span>
+        <span class="star-badge">⭐ 8.8/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">早餐一流</span>
+        <h4>Vessel Inn 浅草筑波快线</h4>
+        <p class="en">Vessel Inn Asakusa Tsukuba Express</p>
+        <div class="meta-row">📍 浅草站步行 5 分钟（500m）</div>
+        <div class="meta-row">🛏️ 双人床房 · 前台热情</div>
+        <div class="price-row">
+          <div><div class="price">¥3,179</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Vessel+Inn+Asakusa&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Vessel+Inn+Asakusa&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#6</span>
+        <span class="star-badge">⭐ 9.2/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">评分最高</span>
+        <h4>浅草中央酒店</h4>
+        <p class="en">Asakusa Central Hotel</p>
+        <div class="meta-row">📍 浅草站步行 8 分钟（740m）</div>
+        <div class="meta-row">🛏️ 干净卫生 · 交通便利</div>
+        <div class="price-row">
+          <div><div class="price">¥3,225</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Asakusa+Central+Hotel&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Asakusa+Central&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1551918120-9739cb430c6d?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#7</span>
+        <span class="star-badge">⭐ 8.9/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">含早 + 最近站</span>
+        <h4>Super Hotel 浅草</h4>
+        <p class="en">Super Hotel Asakusa</p>
+        <div class="meta-row">📍 浅草站步行 3 分钟（300m）</div>
+        <div class="meta-row">🛏️ 标准双人房带浴室 · 含早餐</div>
+        <div class="price-row">
+          <div><div class="price">¥3,309</div><div class="price-label">2 间 × 2 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Super+Hotel+Asakusa&checkin=2026/05/03&checkout=2026/05/05&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Super+Hotel+Asakusa&checkin=2026-05-03&checkout=2026-05-05&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 新宿段 -->
+<section>
+  <div class="section-head">
+    <span class="tag">SEGMENT 2</span>
+    <h2>5/7 – 5/9 · 新宿段（3 晚）</h2>
+    <p class="desc">86 家筛选后 · 优先 BUSTA 巴士总站附近 · 5/7 河口湖、5/8 木更津、5/10 N'EX 成田都从这里发车</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#1</span>
+        <span class="star-badge">⭐ 8.3/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">最便宜</span>
+        <h4>东京商务酒店</h4>
+        <p class="en">Tokyo Business Hotel</p>
+        <div class="meta-row">📍 新宿步行 1.3km</div>
+        <div class="meta-row">🛏️ 禁烟单人房 · 90 条评价（少）</div>
+        <div class="price-row">
+          <div><div class="price">¥2,571</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Tokyo+Business+Hotel+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Tokyo+Business+Hotel&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#3</span>
+        <span class="star-badge">⭐ 8.6/10</span>
+      </div>
+      <div class="body">
+        <h4>花火旅馆</h4>
+        <p class="en">Hanabi Hotel</p>
+        <div class="meta-row">📍 新宿步行 1.8km</div>
+        <div class="meta-row">🛏️ 日式单人房 · 性价比高</div>
+        <div class="price-row">
+          <div><div class="price">¥3,181</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Hanabi+Hotel+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Hanabi+Hotel&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1549638441-b787d2e11f14?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#6</span>
+        <span class="star-badge">⭐ 8.1/10</span>
+      </div>
+      <div class="body">
+        <h4>新宿 Listel 酒店</h4>
+        <p class="en">Hotel Listel Shinjuku</p>
+        <div class="meta-row">📍 新宿步行 1.4km</div>
+        <div class="meta-row">🛏️ 禁烟单人房 · 体验一流</div>
+        <div class="price-row">
+          <div><div class="price">¥3,744</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Hotel+Listel+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Hotel+Listel+Shinjuku&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#7</span>
+        <span class="star-badge">⭐ 8.5/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">老牌可靠 · 6019 条评价</span>
+        <h4>新宿华盛顿酒店</h4>
+        <p class="en">Shinjuku Washington Hotel</p>
+        <div class="meta-row">📍 新宿步行 800m · 近 BUSTA</div>
+        <div class="meta-row">🛏️ 禁烟单人房 · 6019 条评价</div>
+        <div class="price-row">
+          <div><div class="price">¥3,759</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Shinjuku+Washington+Hotel&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Shinjuku+Washington&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#9</span>
+        <span class="star-badge">⭐ 8.6/10</span>
+      </div>
+      <div class="body">
+        <span class="tag-recommend">京王集团 · 早餐一流</span>
+        <h4>新宿京王布莱索酒店</h4>
+        <p class="en">Keio Presso Inn Shinjuku</p>
+        <div class="meta-row">📍 新宿步行 850m · 近 BUSTA</div>
+        <div class="meta-row">🛏️ 新装修禁烟大床房</div>
+        <div class="price-row">
+          <div><div class="price">¥3,845</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=Keio+Presso+Inn+Shinjuku&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=Keio+Presso+Inn+Shinjuku&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=600&q=70')">
+        <span class="rank-badge">#5</span>
+        <span class="star-badge">⭐ 7.9/10</span>
+      </div>
+      <div class="body">
+        <h4>LiVEMAX 新宿东</h4>
+        <p class="en">HOTEL LiVEMAX Shinjuku East</p>
+        <div class="meta-row">📍 新宿步行 1.5km</div>
+        <div class="meta-row">🛏️ 单床房禁烟 · 402 条评价</div>
+        <div class="price-row">
+          <div><div class="price">¥3,715</div><div class="price-label">2 间 × 3 晚 含税总价</div></div>
+        </div>
+        <div class="links">
+          <a href="https://hk.trip.com/hotels/list?searchWord=LiVEMAX+Shinjuku+East&checkin=2026/05/07&checkout=2026/05/10&crn=2&adult=2&curr=CNY" target="_blank">Trip.com</a>
+          <a href="https://hotels.ctrip.com/hotels/list?searchWord=LiVEMAX+Shinjuku+East&checkin=2026-05-07&checkout=2026-05-10&crn=2" target="_blank">携程</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIER RECOMMENDATIONS -->
+<section>
+  <div class="section-head">
+    <span class="tag">FINAL PICKS</span>
+    <h2>3 档预订组合</h2>
+    <p class="desc">5 晚酒店总价已包含全部税费，按家人舒适度递增</p>
+  </div>
+
+  <div class="tiers">
+
+    <div class="tier">
+      <h3>🥉 经济档</h3>
+      <div class="total">¥5,650 – 6,200<small> / 5 晚</small></div>
+      <div class="pick">
+        <div class="seg">5/3 – 5/4 浅草</div>
+        <div class="name">東武浅草站北 Trend</div>
+        <div class="info">¥2,456（2 间 × 2 晚）</div>
+      </div>
+      <div class="pick">
+        <div class="seg">5/7 – 5/9 新宿</div>
+        <div class="name">花火旅馆 / Listel 新宿</div>
+        <div class="info">¥3,200 – 3,750（2 间 × 3 晚）</div>
+      </div>
+    </div>
+
+    <div class="tier gold">
+      <span class="ribbon">★ 强推</span>
+      <h3>🥇 中端最佳性价比</h3>
+      <div class="total">¥6,970<small> / 5 晚</small></div>
+      <div class="pick">
+        <div class="seg">5/3 – 5/4 浅草</div>
+        <div class="name">京阪浅草酒店</div>
+        <div class="info">¥3,125 · 9.0 分 · 早餐一流</div>
+      </div>
+      <div class="pick">
+        <div class="seg">5/7 – 5/9 新宿</div>
+        <div class="name">京王布莱索新宿</div>
+        <div class="info">¥3,845 · 8.6 分 · 近 BUSTA</div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <h3>🏆 升级款（家人优先）</h3>
+      <div class="total">¥6,850<small> / 5 晚</small></div>
+      <div class="pick">
+        <div class="seg">5/3 – 5/4 浅草</div>
+        <div class="name">Nesthotel 蔵前站</div>
+        <div class="info">¥3,092 · 蔵前新店 · 9.1 分</div>
+      </div>
+      <div class="pick">
+        <div class="seg">5/7 – 5/9 新宿</div>
+        <div class="name">新宿华盛顿酒店</div>
+        <div class="info">¥3,759 · 6,019 条评价 · 老牌</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section>
+  <div class="section-head">
+    <span class="tag">ITINERARY</span>
+    <h2>整体行程概览</h2>
+    <p class="desc">三段酒店配合行程逻辑：藏前最顺接奥莱+JR+新干线，新宿最顺接巴士+N'EX</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="date">5/3 周日</div>
+      <div class="title">沪沈家会成田 → 酒酒井奥莱 → 浅草</div>
+      <div class="where">🏨 浅草段酒店 · 14:15 三人会合通关</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">5/4 周一</div>
+      <div class="title">镰仓江之电 + 海边咖啡</div>
+      <div class="where">🏨 浅草段酒店 · 错峰休闲日</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">5/5 周二</div>
+      <div class="title">东京 → 伊豆熱川（城崎海岸）</div>
+      <div class="where">🏨 熱川蓝海（已订） · 新干线 + 伊豆急行</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">5/6 周三</div>
+      <div class="title">大室山 + 海景温泉 → 新宿</div>
+      <div class="where">🏨 新宿段酒店 入住</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">5/7 周四</div>
+      <div class="title">河口湖电助力车骑行（半天）</div>
+      <div class="where">🚌 BUSTA 巴士总站 7:30 出发</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">5/8 周五</div>
+      <div class="title">木更津奥莱（始祖鸟补货）</div>
+      <div class="where">🚌 BUSTA 巴士总站 9:00 出发</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">5/9 周六</div>
+      <div class="title">皇居 + 晴空塔 + 中目黑 + 都厅夜景</div>
+      <div class="where">🚇 市区收尾日</div>
+    </div>
+    <div class="timeline-item">
+      <div class="date">5/10 周日</div>
+      <div class="title">新宿 → 成田 → 上海/沈阳</div>
+      <div class="where">🚄 N'EX 成田特快 9:00 出发</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<section>
+  <div class="section-head">
+    <span class="tag">NEXT STEPS</span>
+    <h2>立即行动清单</h2>
+    <p class="desc">距 5/3 出发只剩 7 天，今晚就该订完两段酒店</p>
+  </div>
+
+  <div class="actions">
+    <ol>
+      <li><strong>先订双人房（您和妻子）</strong>：黄金周双人房稀缺，先锁定再考虑父亲单人房。同酒店两间同时下单，万一一种没库存就分别订。</li>
+      <li><strong>携程 vs Trip.com 二选一</strong>：实测同一房型价格差 &lt; 2%。携程国内站界面更快、中文客服；Trip.com 偶有 App 端 5% 额外折扣。</li>
+      <li><strong>必须勾选"免费取消"</strong>：5/1 之前都还能改。锁定房型后随时可比价升级。</li>
+      <li><strong>注意 Twin（双床）vs Double（大床）</strong>：日本商务酒店 Twin 房稀缺。您和妻子若一定要双床，订房时务必筛选"双床房 / 2张床 / Twin"。</li>
+      <li><strong>住宿税不要忘记</strong>：东京住宿税 ¥100–200/人/晚（在酒店现付，不计入网上含税总价）。</li>
+    </ol>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p>实测于 2026-04-26 · Trip.com（携程国际版）+ 携程国内站<br>
+  数据为 5/3 前 7 天实时报价快照，价格随时可能变动。返回 <a href="../">Showcase 主页</a></p>
+</footer>
+
+</body>
+</html>
